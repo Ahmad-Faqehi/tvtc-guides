@@ -120,7 +120,7 @@
                     </a>
                 </div>
                 <div class="col-md-6 col-lg-6 offset-md-3 offset-lg-3 tab-link-item wow fadeInRight pb-3" data-wow-delay="0.1s">
-                    <a href="soon.html">
+                    <a href="orders.html">
                     <div class="tab-link-inner">
                         <span class="flaticon-checklist"></span>
                         <h6 class="fonty-par">الطلبات</h6>

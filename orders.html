@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/mystyle.css">
     <style>
-        *{
+        *  , h5{
             font-family: "JF Flat Regular", "roboto", sans-serif, arial;
 
         }
@@ -81,47 +81,87 @@
             <h1 class="bread-crumb-title">TVTC Guides</h1>
             <ul class="breadcrumb-links">
                 <li class="breadcrumb-link fonty"><a href="index.php">الرئيسية</a></li>
-                <li class="active fonty">تسجيل الدخول</li>
+                <li class="active fonty">الطلبات</li>
             </ul>
         </div>
     </div>
 </section>
 <!--// Breadcrumb Section End //-->
 
-<!--// Blog Grid Start //-->
-<section class="section" id="blog-grid">
-    <div class="container" dir="rtl">
+<!-- Services Start -->
+<section class="section pb-minus-70" id="services" data-scroll-index="2" dir="rtl">
+    <div class="container">
         <div class="row justify-content-center">
-            <div class="section-heading col-md-12 text-center" style="  margin-bottom: 15px;">
-                <h2 class="section-title fonty">تسجيل الدخول</h2>
-            </div>
-            <div class="col-lg-12">
-                <div class="contact-form-group">
-                    <input type="text" class="form-input" name="contact_name" id="contactName" placeholder="أسم المستخدم (الارقم الاكاديمي)">
+            <div class="col-lg-6">
+                <div class="section-heading">
+                    <h2 class="section-title fonty">قسم الطلبات</h2>
+                    <p class="fonty-par">
+                        يمكن من خلال هذا القسم طلب الدعم الفني - الطبيبة - الأمن - مسؤولة المفاتيح وذلك لسهولة الوصول اليه
+                    </p>
                 </div>
             </div>
-
-            <div class="col-lg-12">
-                <div class="contact-form-group">
-                    <input type="password" class="form-input" name="contact_email" id="contactEmail" placeholder="كلمة السر">
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <a href="form.php?do=support" class="text-muted">
+                <div class="services-item">
+                    <div class="services-icon">
+                        <i class="far fa-question-circle"></i>
+                    </div>
+                    <div class="services-body">
+                        <h5>الدعم الفني</h5>
+                        <p class="fonty-par" >هنا وصف صغير عن الخدمة</p>
+                    </div>
                 </div>
+                </a>
             </div>
-            <div class="col-md-12 text-center pt-1">
-                <div class="contact-btn-left custom-form">
-                    <button type="submit" id="contactBtn" onClick="login()" class="primary-button border-none">دخول</button>
+
+            <div class="col-md-6 col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <a href="form.php?do=key" class="text-muted">
+                <div class="services-item">
+                    <div class="services-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="services-body">
+                        <h5>مسؤولة المفاتيح</h5>
+                        <p class="fonty-par" >هنا وصف صغير عن الخدمة</p>
+                    </div>
                 </div>
+                </a>
             </div>
 
-            <div class="col-12 text-right pt-4">
-                <p>ليس لديك حساب بعد؟ <a href="singup.html" class="text-main"> تسجيل حساب جديد </a></p>
+            <div class="col-md-6 col-lg-6 wow fadeInUp" data-wow-delay="0.2s">
+                <a href="form.php?do=security" class="text-muted">
+                <div class="services-item">
+                    <div class="services-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="services-body">
+                        <h5>الامن</h5>
+                        <p class="fonty-par" >هنا وصف صغير عن الخدمة</p>
+                    </div>
+                </div>
+                </a>
+            </div>
 
+            <div class="col-md-6 col-lg-6 wow fadeInUp" data-wow-delay="0.2s">
+                <a href="form.php?do=doctor" class="text-muted">
+                <div class="services-item">
+                    <div class="services-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="services-body">
+                        <h5>الطبيبة</h5>
+                        <p class="fonty-par" >هنا وصف صغير عن الخدمة</p>
+                    </div>
+                </div>
+                </a>
             </div>
 
         </div>
     </div>
-
 </section>
-<!--// Blog Grid End //-->
+<!--// Services End  //-->
 
 <!--// Footer Start //-->
 <footer class="footer">
