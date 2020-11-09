@@ -37,6 +37,11 @@
   font-size: 17px;
 }
 
+@media only screen and (max-width: 991.98px) {
+    .header .dropdown-toggle:before {
+        right: 77px !important;
+    }
+}
 
 @media only screen and (max-width: 992px) {
      .spc {
@@ -47,6 +52,9 @@
     }
     .mo-pt-15{
         padding-top: 15px;
+    }
+    .stext{
+        font-size: 15px;
     }
   }
 

@@ -49,17 +49,28 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link fonty" href="#" data-scroll-nav="1" style="font-size: 17px;">الرئيسية</a>
+                        <a class="nav-link fonty" href="#"  style="font-size: 17px;">الرئيسية</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link fonty" href="login.html"   style="font-size: 17px;">حسابي</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fonty" href="soon.html"  style="font-size: 17px;">تواصل معانا</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fonty" href="#" id="homeDropdownMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 17px;">
+                            حسابي
+                        </a>
+                        <div class="dropdown-menu text-right" aria-labelledby="homeDropdownMenu">
+                            <a class="dropdown-item fonty" href="login.html">تسجيل دخول</a>
+                            <a class="dropdown-item fonty" href="singup.html">أنشاء حساب</a>
+                        </div>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link menu-link fonty" href="soon.html"  style="font-size: 17px;">أتصل بنا</a>
+                        <a class="nav-link fonty" href="listinfo.html"  style="font-size: 17px;">تواصل معانا</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link fonty" href="" data-scroll-nav="5" style="font-size: 17px;">فريق المشروع</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-link fonty" href="Contact.html"  style="font-size: 17px;">أتصل بنا</a>
                     </li>
 
                 </ul>
@@ -79,7 +90,7 @@
                     <div class="banner-content">
                         <h1 class="wow fadeInUp text-center " style="letter-spacing: 3px;" data-wow-delay="0.1s">TVTC Guides</h1>
                         <p class="wow fadeInUp h5 text-center fonty spc" data-wow-delay="0.2s">
-                            موقع يقدم عدة أقسام من الخدمات تخدم الكلية التقنية
+                            موقع يقدم عدة أقسام من الخدمات تخدم الكلية التقنية الرقمية
                         </p>
                         <div class="holder-link wow fadeInUp text-center" data-wow-delay="0.3s" data-scroll-nav="2">
                             <a href="#"  class="default-button fonty">
@@ -128,7 +139,7 @@
                     </a>
                 </div>
                 <div class="col-md-6 col-lg-6 offset-md-3 offset-lg-3 tab-link-item wow fadeInLeft pb-3" data-wow-delay="0.3s">
-                    <a href="soon.html">
+                    <a href="listinfo.html">
                     <div class="tab-link-inner">
                         <span class="flaticon-contact"></span>
                         <h6 class="fonty-par">التواصل</h6>
@@ -136,7 +147,7 @@
                     </a>
                 </div>
                 <div class="col-md-6 col-lg-6 offset-md-3 offset-lg-3 tab-link-item wow fadeInRight pb-3" data-wow-delay="0.3s">
-                    <a href="soon.html">
+                    <a href="loss.html">
                     <div class="tab-link-inner">
                         <span class="flaticon-lost-items"></span>
                         <h6 class="fonty-par">المفقودات</h6>
@@ -168,7 +179,7 @@
                             <div class="how-it-work-body">
                                 <h6 class="fonty-nav" >قسم الطلبات</h6>
                                 <p class="fonty-par">
-                                    يمكن من خلال هذا القسم طلب الدعم الفني - الطبيبة - الأمن - مسؤولة المفاتيح وذلك لسهولة الوصول اليه
+                                    يمكن من خلال هذا القسم طلب الدعم الفني - الطبيبة - الأمن - مسؤولة المفاتيح وذلك لسهولة الوصول إليهم
                                 </p>
                             </div>
                         </li>
@@ -282,6 +293,95 @@
 </section>
 <!--// Watch Video End //-->
 
+
+<!--// Testimonial Section End //-->
+<section id="testimonials" class="section jarallax"  data-jarallax="" data-speed="0.6s" data-scroll-index="5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="section-heading white-section-text" dir="rtl">
+                    <h2 class="section-title fonty">القائمين على المشروع</h2>
+                    <p class="fonty-par">
+                     تعرف على الفريق الرائع الذي قام على تصميم فكرة هذا المشروع.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="testimonials-carousel owl-carousel owl-theme">
+
+
+                    <div class="item">
+                        <div class="testimonials-item">
+                            <div class="testimonials-header">
+                                <img src="img/moji/4.jpg" alt="testimonials image" class="img-fluid">
+                            </div>
+                            <div class="testimonials-body">
+                                <h5 class="fonty"> لمياء المطيري</h5>
+                                <div class="team-social m-2">
+                                    <a href="#no"><i class="fab fa-twitter"></i></a>
+                                    <a href="#no"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="testimonials-item">
+                            <div class="testimonials-header">
+                                <img src="img/moji/3.jpg" alt="testimonials image" class="img-fluid">
+                            </div>
+                            <div class="testimonials-body">
+                                <h5 class="fonty"> ساره العبدان </h5>
+                                <div class="team-social m-2">
+                                    <a href="#no"><i class="fab fa-twitter"></i></a>
+                                    <a href="#no"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="testimonials-item">
+                            <div class="testimonials-header">
+                                <img src="img/moji/8.jpg" alt="testimonials image" class="img-fluid">
+                            </div>
+                            <div class="testimonials-body">
+                                <h5 class="fonty">لمياء الحيان</h5>
+                                <div class="team-social m-2">
+                                    <a href="#no"><i class="fab fa-twitter"></i></a>
+                                    <a href="#no"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="testimonials-item">
+                            <div class="testimonials-header">
+                                <img src="img/moji/7.jpg" alt="testimonials image" class="img-fluid">
+                            </div>
+                            <div class="testimonials-body">
+                                <h5 class="fonty"> سارة غانم </h5>
+                                <div class="team-social m-2">
+                                    <a href="#no"><i class="fab fa-twitter"></i></a>
+                                    <a href="#no"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--// Testimonial Section End //-->
 
 
 

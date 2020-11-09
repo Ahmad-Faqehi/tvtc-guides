@@ -314,15 +314,15 @@ p {
   border-radius: 5px;
   background: #6c63ff;
   color: #fff;
-  -webkit-box-shadow: 0 5px 20px 0 rgba(38, 91, 251, 0.3);
-          box-shadow: 0 5px 20px 0 rgba(38, 91, 251, 0.3);
+  /*-webkit-box-shadow: 0 5px 20px 0 rgba(38, 91, 251, 0.3);*/
+  /*        box-shadow: 0 5px 20px 0 rgba(38, 91, 251, 0.3);*/
 }
 
 .primary-button:hover {
-  background: #043dea;
+  background: rgba(78, 78, 156, 0.89);
   color: #fff;
-  -webkit-box-shadow: 0 10px 20px 0 rgba(38, 91, 251, 0.4);
-          box-shadow: 0 10px 20px 0 rgba(38, 91, 251, 0.4);
+  -webkit-box-shadow: 0 10px 20px 0 rgba(128, 128, 216, 0.4);
+          box-shadow: 0 10px 20px 0 rgba(128, 128, 216, 0.4);
   -webkit-transform: translateY(-5px);
           transform: translateY(-5px);
 }
@@ -561,6 +561,12 @@ p {
 
 .text-main{
   color: #6c63ff;
+}
+
+.btn-main{
+  color: #fff;
+  background-color: #6c63ff;
+  border-color: #6362c5;
 }
 
 .form-input.contact-text-area {
@@ -1633,7 +1639,7 @@ p {
   z-index: 5;
   position: relative;
   background-repeat: no-repeat;
-  background-image: url(../img/clients/clients-bg.png);
+  background-image: url(../img/bg/tm2.jpg);
   background-size: cover;
   background-position: center center;
 }
@@ -1647,7 +1653,7 @@ p {
   height: 100%;
   opacity: 0.8;
   z-index: -5;
-  background: #6c63ff;
+  background: #3e3e7c;
 }
 
 #testimonials .testimonials-carousel {
@@ -1779,7 +1785,7 @@ p {
   margin-bottom: 10px;
 }
 
-.team-card .team-social a {
+ .team-social a {
   display: inline-block;
   width: 50px;
   height: 50px;
@@ -1791,16 +1797,16 @@ p {
   transition: all 0.25s linear;
   text-align: center;
   border-radius: 5px;
-  -webkit-box-shadow: 0 5px 20px 0 rgba(38, 91, 251, 0.3);
-          box-shadow: 0 5px 20px 0 rgba(38, 91, 251, 0.3);
+  /*-webkit-box-shadow: 0 5px 20px 0 rgba(38, 91, 251, 0.3);*/
+  /*        box-shadow: 0 5px 20px 0 rgba(38, 91, 251, 0.3);*/
 }
 
-.team-card .team-social a:last-child {
+  .team-social a:last-child {
   margin-right: 0;
 }
 
-.team-card .team-social a:hover {
-  background: #043dea;
+  .team-social a:hover {
+  background: #4e4e9c;
   color: #fff;
   -webkit-box-shadow: 0 10px 20px 0 rgba(38, 91, 251, 0.4);
           box-shadow: 0 10px 20px 0 rgba(38, 91, 251, 0.4);
@@ -2386,8 +2392,9 @@ p {
   margin-bottom: 30px;
   -webkit-transition: all 0.25s ease;
   transition: all 0.25s ease;
-  -webkit-box-shadow: 0 20px 60px 0 rgba(40, 93, 251, 0.16);
-          box-shadow: 0 20px 60px 0 rgba(40, 93, 251, 0.16);
+  /*-webkit-box-shadow: 0 20px 60px 0 rgba(40, 93, 251, 0.16);*/
+  /*        box-shadow: 0 20px 60px 0 rgba(40, 93, 251, 0.16);*/
+  border: 1px solid #ccc!important;
 }
 
 .blog-sidebar .blog-widgets .blog-search-btn {
