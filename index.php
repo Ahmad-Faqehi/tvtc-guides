@@ -1,87 +1,13 @@
 
-<!DOCTYPE html>
-<html lang="ar" >
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="keywords" content="app landing page,business,finance,corporate,landing page,ui,ux">
-    <meta name="author" content="Yucel Yilmaz">
-    <meta name="robots" content="noindex, nofollow">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>TVTC Guides</title>
-    <!--// Icons //-->
-    <link rel="stylesheet" href="fonts/flat_icons/flaticon.css">
-    <link rel="stylesheet" href="fonts/flat-icons2/flaticon.css">
-    <link rel="stylesheet" href="fonts/font_awesome/css/all.css">
-    <!--// Google Fonts //-->
-
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap&subset=latin-ext" rel="stylesheet">
-    <!--// FrameWorks //-->
-    <link rel="stylesheet" href="css/frameworks.css">
-    <!--// Theme Main Js //-->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/mystyle.css">
-</head>
+<?php include "includes/head.php"; ?>
 
 <body data-spy="scroll" data-target="#fixedNavbar" data-offset="70">
 
 <!--// Header Start //-->
-<header class="header fixed-top">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg p-0">
-            <a class="navbar-brand btn btn-link" href="#">
-
-                <img src="img/bg/tvtc.png" alt="Logo" class=" w-50 img-fluid logo-transparent ">
-                <img src="img/bg/tvtc.png" alt="Logo" class=" w-50 img-fluid logo-normal">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#fixedNavbar" aria-controls="fixedNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="togler-icon-inner">
-                        <span class="line-1"></span>
-                        <span class="line-2"></span>
-                        <span class="line-3"></span>
-                    </span>
-            </button>
-            <div class="collapse navbar-collapse main-menu justify-content-end" id="fixedNavbar" >
-                <ul class="navbar-nav" style="text-align: initial;" dir="rtl">
-
-
-                    <li class="nav-item">
-                        <a class="nav-link fonty" href="#"  style="font-size: 17px;">الرئيسية</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle fonty" href="#" id="homeDropdownMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 17px;">
-                            حسابي
-                        </a>
-                        <div class="dropdown-menu text-right" aria-labelledby="homeDropdownMenu">
-                            <a class="dropdown-item fonty" href="login.html">تسجيل دخول</a>
-                            <a class="dropdown-item fonty" href="singup.html">أنشاء حساب</a>
-                        </div>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link fonty" href="listinfo.html"  style="font-size: 17px;">تواصل معانا</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link fonty" href="" data-scroll-nav="5" style="font-size: 17px;">فريق المشروع</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link menu-link fonty" href="Contact.html"  style="font-size: 17px;">أتصل بنا</a>
-                    </li>
-
-                </ul>
-            </div>
-        </nav>
-    </div>
-</header>
+<?php include "includes/header.php"?>
 <!--// Header End  //-->
 
 <!--// Hero Start //-->
-
 <section id="home" class="jarallax" data-scroll-index="1" data-jarallax="" data-speed="0.6s" style="background-image: url(img/bg/bg-TVTC.jpeg); direction: rtl">
     <div class="banner-wrap">
         <div class="container">
@@ -122,16 +48,19 @@
         </div>
         <div class="tab-link-wrap">
             <div class="row">
+                <?php if(!isset($_SESSION['memberId:TVTC'])): ?>
                 <div class="col-md-6 col-lg-6 offset-md-3 offset-lg-3 tab-link-item wow fadeInLeft pb-3" data-wow-delay="0s">
-                    <a href="login.html">
+                    <a href="login.php">
                     <div class="tab-link-inner">
                         <span class="flaticon-user"></span>
                         <h6 class="fonty-par">إدارة الحساب</h6>
+                        <p class="fonty-par text-muted  "> تسجيل دخول او إنشاء حساب </p>
                     </div>
                     </a>
                 </div>
+                <?php endif; ?>
                 <div class="col-md-6 col-lg-6 offset-md-3 offset-lg-3 tab-link-item wow fadeInRight pb-3" data-wow-delay="0.1s">
-                    <a href="orders.html">
+                    <a href="orders.php">
                     <div class="tab-link-inner">
                         <span class="flaticon-checklist"></span>
                         <h6 class="fonty-par">الطلبات</h6>
@@ -139,7 +68,7 @@
                     </a>
                 </div>
                 <div class="col-md-6 col-lg-6 offset-md-3 offset-lg-3 tab-link-item wow fadeInLeft pb-3" data-wow-delay="0.3s">
-                    <a href="listinfo.html">
+                    <a href="listinfo.php">
                     <div class="tab-link-inner">
                         <span class="flaticon-contact"></span>
                         <h6 class="fonty-par">التواصل</h6>
@@ -147,7 +76,7 @@
                     </a>
                 </div>
                 <div class="col-md-6 col-lg-6 offset-md-3 offset-lg-3 tab-link-item wow fadeInRight pb-3" data-wow-delay="0.3s">
-                    <a href="loss.html">
+                    <a href="loss.php">
                     <div class="tab-link-inner">
                         <span class="flaticon-lost-items"></span>
                         <h6 class="fonty-par">المفقودات</h6>
@@ -218,6 +147,8 @@
 </section>
 <!--// How It Work End //-->
 
+
+
 <!--/ Counter Start /-->
 <section class="section pb-minus-70 " id="counters">
     <div class="container">
@@ -236,7 +167,7 @@
                         <i class="fas fa-hand-holding-heart"></i>
                     </div>
                     <div class="counter-body">
-                        <h2 class="counter">24</h2>
+                        <h2 class="counter"> <?php echo  $conn->query("SELECT * FROM `order` ")->rowCount();  ?> </h2>
                         <span class="fonty-par">عدد الطلبات</span>
                     </div>
                 </div>
@@ -247,7 +178,7 @@
                         <i class="mdi mdi-account-heart"></i>
                     </div>
                     <div class="counter-body">
-                        <h2 class="counter">178</h2>
+                        <h2 class="counter"><?php echo  $conn->query("SELECT * FROM `users` ")->rowCount();  ?></h2>
                         <span class="fonty-par">عدد المستفيدين</span>
                     </div>
                 </div>
@@ -258,7 +189,7 @@
                         <i class="mdi mdi-ticket"></i>
                     </div>
                     <div class="counter-body">
-                        <h2 class="counter">34</h2>
+                        <h2 class="counter"><?php echo  $conn->query("SELECT * FROM `contact`")->rowCount();  ?></h2>
                         <span class="fonty-par">عدد مرات التوصل</span>
                     </div>
                 </div>
