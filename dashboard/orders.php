@@ -150,6 +150,7 @@ if(isset($_GET['do'])){
                                     <?php
                                     $stmt=$conn->prepare("SELECT `order`.`id`, date_order, name, important FROM `order` JOIN `users` on `order`.from_who = `users`.id WHERE `order`.`to_who`='$do'");
                                     $stmt->execute();
+                                    $empty = false;
 
 
                                     if($stmt->rowCount() > 0) {
@@ -172,12 +173,15 @@ if(isset($_GET['do'])){
 
                                    <?php }
 
+                                    }else{
+                                        $empty = true;
                                     }
 
                                     ?>
 
                                     </tbody>
                                 </table>
+                                    <?php echo ($empty) ? "<h5 class=\"text-center text-muted\"> لايوجد طلبات في هذا القسم </h5>" : ""?>
                                 </div>
                             </div>
                         </div>

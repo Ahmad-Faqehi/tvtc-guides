@@ -1,84 +1,138 @@
 
 <?php include "includes/head.php";?>
 <?php
+
+if(isset($_GET['id'])){
+
+    if(!is_numeric($_GET['id']) || empty($_GET['id'])){  exit(header('Location: index.php')); die();}
+
+    $lost_id = (int)$_GET["id"];
+
+
+}else{
+    exit(header('Location: index.php')); die();
+}
+
+$tag = "<p class='text-danger text-center' > عذرا حصل خطا!!  <br> <a href='index.php' class=' btn btn-link text-center '> عودة </a> </p>";
+$stmt= $conn->prepare("SELECT * FROM `lost` WHERE id =:id");
+$stmt->bindValue(":id", $lost_id);
+$stmt->execute();
+$row = $stmt->fetch();
+
+
+
+
+
+
+
 $msg_false = false;
 $msg_secss = false;
-if(isset($_POST['upload'])) {
+
+if(isset($_SESSION['alert:false'])){
+    $msg_false = true;
+    unset($_SESSION['alert:false']);
+}
+if (isset($_SESSION['alert:scs'])){
+    $msg_secss = true;
+    unset($_SESSION['alert:scs']);
+}
+
+if(isset($_POST['upload']))
+{
 
     require_once "../vendor/autoload.php";
     \Tinify\setKey("Kw6VngmD7JVw5fBzdn8kGrlBMqWzwgMq");
 
-    $title = $_POST['loss-name'];
-    $description = $_POST['description'];
+    $title =  $_POST['loss-name'];
+    $description =  $_POST['description'];
     $Image = $_FILES['pictures']['name'];
     $Type = $_FILES['pictures']['type'];
     $Temp = $_FILES['pictures']['tmp_name'];
     $size = $_FILES['pictures']['size'];
+    $check = @$_POST['state'];
 
-    if (!empty($Image)) {
-
-
-        $ImageExt = explode('.', $Image);
-        $ImgCorrectExt = strtolower(end($ImageExt));
-        $Allow = array('jpg', 'jpeg', 'png');
-        $Allow2 = array('image/jpg', 'image/jpeg', 'image/png');
-        $photoname = time() . "-" . $Image;
-        $target = "../img/lost/" . $photoname;
-        $realType = mime_content_type($Temp);
-
-        if (!in_array($realType, $Allow2)) {
-
-            echo '<div class="alert alert-danger" role="alert">
-        File Not Allow 😒 !! <a href="" class="btn btn-link">Back</a>
-      </div>';
-            die();
-        }
-
-
-        if (in_array($ImgCorrectExt, $Allow)) {
-            if ($size < 10000000) {
-                $source = \Tinify\fromFile($Temp);
-                $imgless = $source->toFile($target);
-
-                list($width, $height) = getimagesize($target);
-
-                $stmtz = $conn->prepare("INSERT INTO `lost`(`title`, `description`, `image`, `date`,`state`) value (:title,:description,:image,:date,:state) ");
-                $stmtz->bindValue(":title", $title);
-                $stmtz->bindValue(":description", $description);
-                $stmtz->bindValue(":image", $photoname);
-                $stmtz->bindValue(":date", time());
-                $stmtz->bindValue(":state", 0);
-                $stmtz->execute();
-                if ($stmtz->rowCount() > 0) {
-                    $msg_secss = true;
-                } else {
-                    $msg_false = true;
-                }
-
-            } else {
-                $msg = '<div class="alert alert-warning" role="alert">
-                File size Too Large !!
-              </div>';
-            }
-        } else {
-            $msg_false = true;
-        }
+    if(empty($check)){
+        $sate = 0;
 
     }else{
+        $sate = 1;
+    }
 
-        $stmtz = $conn->prepare("INSERT INTO `lost`(`title`, `description`, `date`,`state`) value (:title,:description,:date,:state) ");
-        $stmtz->bindValue(":title", $title);
-        $stmtz->bindValue(":description", $description);
-        $stmtz->bindValue(":date", time());
-        $stmtz->bindValue(":state", 0);
-        $stmtz->execute();
-        if ($stmtz->rowCount() > 0) {
-            $msg_secss = true;
+if (!empty($Image)) {
+
+    $ImageExt = explode('.', $Image);
+    $ImgCorrectExt = strtolower(end($ImageExt));
+    $Allow = array('jpg', 'jpeg', 'png');
+    $Allow2 = array('image/jpg', 'image/jpeg', 'image/png');
+    $photoname = time() . "-" . $Image;
+    $target = "../img/lost/" . $photoname;
+    $realType = mime_content_type($Temp);
+
+    if (!in_array($realType, $Allow2)) {
+
+        echo '<div class="alert alert-danger" role="alert">
+        File Not Allow 😒 !! <a href="" class="btn btn-link">Back</a>
+      </div>';
+        die();
+    }
+
+
+    if (in_array($ImgCorrectExt, $Allow)) {
+        if ($size < 10000000) {
+            $source = \Tinify\fromFile($Temp);
+            $imgless = $source->toFile($target);
+
+            list($width, $height) = getimagesize($target);
+
+            $stmtz = $conn->prepare("UPDATE `lost` SET `title`=:title,`description`=:description,`state`=:state, `image` = :img WHERE id = :id ");
+            $stmtz->bindValue(":title", $title);
+            $stmtz->bindValue(":description", $description);
+            $stmtz->bindValue(":state", $sate);
+            $stmtz->bindValue(":img", $photoname);
+            $stmtz->bindValue(":id", $lost_id);
+            $stmtz->execute();
+            if ($stmtz->rowCount() > 0) {
+                $_SESSION['alert:scs'] = 1;
+                header("Location: edit-lost.php?id=$lost_id");
+
+            } else {
+                $_SESSION['alert:false'] = 1;
+                header("Location: edit-lost.php?id=$lost_id");
+
+            }
+
         } else {
-            $msg_false = true;
+            $msg = '<div class="alert alert-warning" role="alert">
+                File size Too Large !!
+              </div>';
         }
+    } else {
+        $_SESSION['alert:false'] = 1;
+        header("Location: edit-lost.php?id=$lost_id");
 
     }
+
+}else{
+
+    $stmtz = $conn->prepare("UPDATE `lost` SET `title`=:title,`description`=:description,`state`=:state WHERE id = :id ");
+    $stmtz->bindValue(":title", $title);
+    $stmtz->bindValue(":description", $description);
+    $stmtz->bindValue(":state", $sate);
+    $stmtz->bindValue(":id", $lost_id);
+    $stmtz->execute();
+    if ($stmtz->rowCount() > 0) {
+        $_SESSION['alert:scs'] = 1;
+        header("Location: edit-lost.php?id=$lost_id");
+
+
+    } else {
+        $_SESSION['alert:false'] = 1;
+        header("Location: edit-lost.php?id=$lost_id");
+
+    }
+
+}
+
 }
 
 
@@ -119,6 +173,10 @@ if(isset($_POST['upload'])) {
     *{
         font-family: 'Tajawal', sans-serif;
 
+    }
+    img{
+        width: 120px;
+        height: 120px;
     }
 </style>
 <body id="page-top" >
@@ -180,54 +238,71 @@ if(isset($_POST['upload'])) {
                     <div class="col-xl-12 col-md-12 mb-4" dir="rtl">
 
 
+
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h5 class="m-0 font-weight-bold text-dark Font-tajawal text-center">  أضافة مفقود </h5>
+                                <h5 class="m-0 font-weight-bold text-dark Font-tajawal text-center">  تعديل على مفقود </h5>
                             </div>
                             <div class="card-body">
 
+                                <?php
+                                if($stmt->rowCount() == 0){
+                                    die($tag);
+                                }
+                                ?>
+
                                 <?php if($msg_false): ?>
-                                <div class="alert alert-danger text-right" role="alert"> حدث خطا عند الاضافة </div>
+                                    <div class="alert alert-danger text-right" role="alert"> حدث خطا عند الاضافة </div>
                                 <?php endif; ?>
                                 <?php if($msg_secss): ?>
-                                    <div class="alert alert-success text-right" role="alert"> تم الاضافة بنجاح </div>
+                                    <div class="alert alert-success text-right" role="alert"> تم التحديث بنجاح </div>
                                 <?php endif; ?>
                                 <form action="" method="post" class="text-right" enctype="multipart/form-data">
 
                                     <label for="username" class="pull-right text-dark">أسم المفقود</label>
                                     <div class="form-group">
-                                        <input type="text" name="loss-name" class="form-control form-control-user" required placeholder="مثال: جوال ايفون7 , بطاقة صرافة... ">
+                                        <input type="text" name="loss-name" class="form-control form-control-user" value="<?=$row['title']?>" required placeholder="مثال: جوال ايفون7 , بطاقة صرافة... ">
                                     </div>
 
                                     <label for="email" class="pull-right text-dark">صورة المفقود</label>
                                     <div class="form-group">
-                                        <input type="file" name="pictures" class="form-control form-control-user" accept="image/*"   >
+                                        <?php
+                                        if(!empty($row['image'])):
+                                        ?>
+                                            <img src="../img/lost/<?=$row['image']?>" class="  img-fluid pb-1">
+                                        <?php
+                                        endif;
+                                        ?>
+                                        <input type="file" name="pictures" class="form-control form-control-user"  accept="image/*"  >
                                     </div>
 
                                     <div class="form-group">
                                         <label for="password" class="pull-right text-dark">التفاصيل  <small>(أختياري)</small></label>
-                                        <textarea class=" form-control form-input" placeholder="أكتب التفاصيل هنا..." cols="50" rows="10" name="description" autocomplete="off"></textarea>
+                                        <textarea class=" form-control form-input" placeholder="أكتب التفاصيل هنا..." cols="50" rows="10" name="description" autocomplete="off"><?php if(!empty($row['description'])){echo $row['description']; } ?></textarea>
                                     </div>
 
-                                    <input type="submit" name="upload" value="أضافة" class="btn btn-dark btn-block">
+                                    <div class="form-group">
+                                        <label for=""> تم العثور </label>
+                                        <input type="checkbox" name="state" value="1" <?php if($row['state']){ echo "checked";} ?> >
+                                    </div>
 
+                                    <input type="submit" name="upload" value="تعديل" class="btn btn-dark btn-block">
                                 </form>
-
 
                             </div>
                         </div>
 
-                </div>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
-
-
-        <!-- Content Row -->
-
     </div>
-    <!-- /.container-fluid -->
+
+
+    <!-- Content Row -->
+
+</div>
+<!-- /.container-fluid -->
 
 </div>
 <!-- End of Main Content -->

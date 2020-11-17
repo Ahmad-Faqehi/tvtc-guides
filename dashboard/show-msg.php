@@ -1,4 +1,12 @@
+<?php
 
+if(!isset($_GET['id'])) : header("Location: index.php"); die(); endif;
+$msg_id = (int)$_GET['id'];
+if(empty($msg_id)){ header("Location: index.php"); die(); }
+
+
+
+?>
 <?php include "includes/head.php";?>
 <style>
     .navbar-nav{
@@ -42,6 +50,17 @@
 
 <!-- Page Wrapper -->
 <div id="wrapper">
+
+    <?php
+
+    if (isset($_GET['read'])){
+
+        $stmtup = $conn->prepare("UPDATE `contact` SET reared = 1 WHERE id = :ido");
+        $stmtup->bindValue(":ido", $msg_id);
+        $stmtup->execute();
+    }
+
+    ?>
 
     <!-- Sidebar -->
     <?php include "includes/menu.php" ?>
@@ -97,50 +116,38 @@
                     <div class="col-xl-12 col-md-12 mb-4" dir="rtl">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h5 class="m-0 font-weight-bold text-dark Fonty text-center"> رسائل اتصل بنا </h5>
+                                <h5 class="m-0 font-weight-bold text-dark Fonty text-center">تفاصيل الرسالة </h5>
                             </div>
                             <div class="card-body">
 
-                                <div class="table-responsive text-center">
-                                    <table class="table">
-                                        <thead class="table-borderless">
-                                        <tr>
-                                            <th scope="col">رقم الرسالة</th>
-                                            <th scope="col">أسم المرسل</th>
-                                            <th scope="col">المزيد</th>
 
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        <?php
-                                        $stmt=$conn->prepare("SELECT * FROM `contact`  ORDER BY `contact`.`date` ASC");
-                                        $stmt->execute();
-                                        $empty = false;
-
-
-                                        if($stmt->rowCount() > 0) {
-
-                                            $rows = $stmt->fetchAll();
-                                            foreach ($rows as $row):?>
-
-                                                <tr class="">
-                                                    <th scope="row"><?=$row['id']?></th>
-                                                    <td><?=$row['name']?></td>
-                                                    <td><a href="show-msg.php?id=<?=$row['id']?>" class="btn btn-info"> عرض </a>  </td>
-                                                </tr>
-
-                                             <?php endforeach;
-                                        }else{
-                                            $empty = true;
-                                        }
-                                        ?>
+                                <?php
 
 
 
-                                        </tbody>
-                                    </table>
-                                    <?php echo ($empty) ? "<p class=\"text-center text-muted\"> ليس هناك رسائل حاليا </p>" : ""?>
+                                $tag = "<p class='text-danger text-center' > عذرا حصل خطا!!  <br> <a href='index.php' class=' btn btn-link text-center '> عودة </a> </p>";
+                                $stmt= $conn->prepare("SELECT * FROM `contact` WHERE id =:idmsg");
+                                $stmt->bindValue(":idmsg", $msg_id);
+                                $stmt->execute();
+                                $row = $stmt->fetch();
+
+                                if($stmt->rowCount() == 0){
+                                    die($tag);
+                                }
+                                ?>
+
+                                <p class="fonty-par text-right p-2">
+                                    <?=$row['message']?>
+                                </p>
+
+                                <hr class="sidebar-divider my-0">
+                                <div class="p-1 text-right">
+                                    <div class="font-weight-bold Fonty pb-2 pt-1 "> اسم المرسل: <span class="font-weight-normal"> <?=$row['name']?></span> </div>
+                                    <?php if(!empty($row['phone'])): ?>
+                                    <div class="font-weight-bold Fonty pb-2 ">  هاتف المرسل: <span class="font-weight-normal"><a href="tel:<?=$row['phone']?>"><?=$row['phone']?></a></span> </div>
+                                    <?php endif; ?>
+                                    <div class="font-weight-bold Fonty pb-2 ">  إئميل المرسل: <span class="font-weight-normal"><a href="mailto:<?=$row['email']?>"><?=$row['email']?></a></span> </div>
+                                    <div class="font-weight-bold Fonty pb-2 "> تاريخ الارسال: <span class="font-weight-normal"><?php echo  date('Y-m-d', $row['date'])?></span> </div>
                                 </div>
                             </div>
                         </div>

@@ -55,7 +55,7 @@
 
                     <?php
 
-                    $stmt=$conn->prepare("SELECT * FROM lost ");
+                    $stmt=$conn->prepare("SELECT * FROM `lost` ORDER BY `lost`.`date` DESC  ");
                     $stmt->execute();
                     $count = 0;
                     if($stmt->rowCount() > 0) {
@@ -72,7 +72,7 @@
                             <div class="recent-post-item clearfix">
                                 <div class="  mr-3">
                                     <a href="soon.html">
-                                        <img class="img-fluid w-50" src="img/lost/<?=$image?>" alt="صورة المفقود" style="float: left;">
+                                        <img class="img-fluid w-50" src="img/lost/<?php if(!empty($image)): echo $image; else: echo "placeholder.png"; endif; ?>" alt="صورة المفقود" style="float: left;">
                                     </a>
                                 </div>
                                 <div class="recent-post-body">

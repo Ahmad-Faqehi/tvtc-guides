@@ -1,4 +1,4 @@
-<?php include "../includes/DataBase.php"; ?>
+
 <?php
 $noty = true;
 $stm = $conn->prepare("SELECT * FROM `order` WHERE reared = 0");
@@ -64,7 +64,7 @@ $count = $stm->rowCount();
                 }
 
                 ?>
-        <a class="dropdown-item d-flex align-items-center" href="page_details.php?do=<?=$do?>&id=<?=$id?>&read" style="direction: rtl">
+        <a class="dropdown-item d-flex align-items-center" href="page_details.php?do=<?=$do?>&order_id=<?=$id?>&read" style="direction: rtl">
             <div class="mr-3">
                 <div class="icon-circle bg-<?php if($import): echo "danger"; else: echo "dark"; endif;?>">
                     <i class="<?=$icon?> fa-1x text-white"></i>

@@ -27,7 +27,7 @@ if($count > 0) {
         $id = $row['id'];
         $date = $row['date'];
     ?>
-        <a class="dropdown-item d-flex align-items-center" href="message.php?id=<?=$id?>" style="direction: rtl">
+        <a class="dropdown-item d-flex align-items-center" href="show-msg.php?id=<?=$id?>&read" style="direction: rtl">
             <div class="mr-3">
                 <div class="icon-circle ">
                     <i class="fas fa-envelope fa-2x "></i>

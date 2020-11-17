@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '4f1a74d2325e999f3c57dfe88506395324866ddf',
+    'reference' => 'ba700684c3cb00cff48891e7764c821f913a23aa',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '4f1a74d2325e999f3c57dfe88506395324866ddf',
+      'reference' => 'ba700684c3cb00cff48891e7764c821f913a23aa',
     ),
     'phpmailer/phpmailer' => 
     array (
@@ -73,6 +73,15 @@
       array (
       ),
       'reference' => 'cede45fcdfabdd6043b3592e83678e42ec69e930',
+    ),
+    'tinify/tinify' => 
+    array (
+      'pretty_version' => '1.5.2',
+      'version' => '1.5.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'b15d1f31d94d9b06e60251543cc918f426f0d55b',
     ),
     'voku/anti-xss' => 
     array (

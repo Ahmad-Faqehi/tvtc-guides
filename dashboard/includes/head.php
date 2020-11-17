@@ -1,4 +1,5 @@
 <?php
+include "../includes/DataBase.php";
 session_start();
 if(isset($_SESSION['dashId:TVTC'])){
 $isLogin = true;

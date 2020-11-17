@@ -1,6 +1,7 @@
 <?php
 
 if(!isset($_GET['do']) and $_GET['order_id']): header("Location: index.php"); die(); endif;
+if(!is_numeric($_GET['order_id']) || empty($_GET['order_id'])){  exit(header('Location: index.php')); die();}
 if(isset($_GET['do']) and $_GET['order_id']){
 
     $order_id = (int)$_GET['order_id'];
@@ -34,9 +35,7 @@ if(isset($_GET['do']) and $_GET['order_id']){
 }
 
 
-if (isset($_GET['read'])){
-    // Todo if true update read to 1
-}
+
 
 ?>
 <?php include "includes/head.php";?>
@@ -83,6 +82,16 @@ if (isset($_GET['read'])){
 <!-- Page Wrapper -->
 <div id="wrapper">
 
+    <?php
+
+    if (isset($_GET['read'])){
+
+    $stmtup = $conn->prepare("UPDATE `order` SET reared = 1 WHERE id = :ido");
+    $stmtup->bindValue(":ido", $order_id);
+    $stmtup->execute();
+    }
+
+    ?>
 
     <!-- Sidebar -->
     <?php include "includes/menu.php" ?>
@@ -142,7 +151,11 @@ if (isset($_GET['read'])){
                             </div>
                             <div class="card-body">
 
+
                                 <?php
+
+
+
                                 $tag = "<p class='text-danger text-center' > عذرا حصل خطا!!  <br> <a href='index.php' class=' btn btn-link text-center '> عودة </a> </p>";
                                 $stmt= $conn->prepare("SELECT `order`.`id`, date_order, name, important, email, message FROM `order` JOIN `users` on `order`.from_who = `users`.id WHERE `order`.`id`=:idorder and  `order`.`to_who` = :tohow ");
                                 $stmt->bindValue(":idorder", $order_id);

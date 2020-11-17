@@ -290,63 +290,49 @@
 
                                         <div class="blog-widgets text-right " >
 
-                                            <div class="recent-post-item clearfix">
-                                                <div class="  mr-3">
-                                                    <a href="soon.html">
-                                                        <img class="img-fluid w-50" src="https://assets.nn.ps/CACHE/images/uploads/weblog/2018/05/06/1_wwcxEUd/3632d171bbdbe7fd348e97a71a6552ab.jpg" alt="Recent Img" style="float: left;">
-                                                    </a>
-                                                </div>
-                                                <div class="recent-post-body">
-                                                    <a href="soon.html">
-                                                        <h6 class="recent-post-title fo ">جوال ايفون 7</h6>
-                                                    </a>
-                                                    <p class="recent-post-date" dir="ltr">Apr 10, 2020</p>
-                                                </div>
-                                            </div>
-                                            <hr>
 
-                                            <div class="recent-post-item clearfix">
-                                                <div class="  mr-3">
-                                                    <a href="soon.html">
-                                                        <img class="img-fluid w-50" src="https://i.ytimg.com/vi/KIl513i4JJE/hqdefault.jpg" alt="Recent Img" style="float: left;">
-                                                    </a>
+                                            <?php
+
+                                            $stmt=$conn->prepare("SELECT * FROM `lost` ORDER BY `lost`.`date` DESC ");
+                                            $stmt->execute();
+                                            $count = 0;
+                                            if($stmt->rowCount() > 0) :
+                                            $rows = $stmt->fetchAll();
+                                            foreach ($rows as $row) :
+                                            $title = $row['title'];
+                                            $description = $row['description'];
+                                            $image = $row['image'];
+                                            $date = $row['date'];
+                                            $state = $row['state'];
+                                            ?>
+
+                                                <div class="recent-post-item clearfix">
+                                                    <div class="  mr-3">
+                                                        <a href="soon.html">
+                                                            <img class="img-fluid w-50" src="../img/lost/<?php if(!empty($image)): echo $image; else: echo "placeholder.png"; endif; ?>" alt="صورة المفقودات" style="float: left;">
+                                                        </a>
+                                                    </div>
+                                                    <div class="recent-post-body">
+                                                        <a href="soon.html">
+                                                            <h6 class="recent-post-title fo "><?=$title?></h6>
+                                                        </a>
+                                                        <p class="recent-post-date" dir="ltr"><?php echo  date('d M, Y', $date)?></p>
+                                                        <p class="recent-post-date" dir="ltr"><a href="edit-lost.php?id=<?=$row['id']?>" class="btn btn-primary btn-sm"> تعديل </a> </p>
+                                                        <?php if($state): ?>
+                                                        <p class="recent-post-date" dir="ltr"> <a href="#" class="btn btn-success text-white btn-circle btn-sm"><i class="fas fa-check text-white" style="margin-right: 0px;"></i></a> </p>
+                                                    <?php endif; ?>
+                                                    </div>
                                                 </div>
-                                                <div class="recent-post-body">
-                                                    <a href="soon.html">
-                                                        <h6 class="recent-post-title fo ">شنطة</h6>
-                                                    </a>
-                                                    <p class="recent-post-date" dir="ltr">Nov 25, 2020</p>
-                                                </div>
+                                                <hr>
+
+                                           <?php endforeach; ?>
+                                            <?php else: ?>
+
+                                            <div class="p-5">
+                                                <h6 class="text-center"> لايوجد مفقودات </h6>
                                             </div>
-                                            <hr>
-                                            <div class="recent-post-item clearfix">
-                                                <div class=" mr-3">
-                                                    <a href="soon.html">
-                                                        <img class="img-fluid w-50" src="https://media.linkonlineworld.com/img/large/2014/5/22/2014_5_22_14_58_16_609.jpg" alt="Recent Img" style="float: left;">
-                                                    </a>
-                                                </div>
-                                                <div class="recent-post-body">
-                                                    <a href="soon.html">
-                                                        <h6 class="recent-post-title fo ">مفتاح سيارة</h6>
-                                                    </a>
-                                                    <p class="recent-post-date" dir="ltr">Oct 9, 2020</p>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="recent-post-item clearfix">
-                                                <div class=" mr-3">
-                                                    <a href="soon.html">
-                                                        <img class="img-fluid w-50" src="https://mixils.com/wp-content/uploads/2020/07/%D9%85%D8%B1%D8%A7%D8%AC%D8%B9%D8%A9-%D8%AC%D9%87%D8%A7%D8%B2-%D8%A3%D8%A8%D9%84-iPad-Pro-2020.jpg" alt="Recent Img" style="float: left;">
-                                                    </a>
-                                                </div>
-                                                <div class="recent-post-body">
-                                                    <a href="soon.html">
-                                                        <h6 class="recent-post-title fo ">ايباد</h6>
-                                                    </a>
-                                                    <p class="recent-post-date" dir="ltr">Dec 13, 2020</p>
-                                                </div>
-                                            </div>
-                                            <hr>
+                                            <?php endif; ?>
+
 
                                         </div>
 
@@ -432,8 +418,7 @@
 
 
 <!-- Page level custom scripts -->
-<script src="js/demo/chart-area-demo.js"></script>
-<script src="js/demo/chart-pie-demo.js"></script>
+
 
 </body>
 
