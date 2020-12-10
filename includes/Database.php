@@ -7,10 +7,10 @@ class Database
 
     protected $_db;
     static $_instance;
-    private $host = 'localhost';
-    private $db_name = 'tvtc';
-    private $username = 'root';
-    private $password = '';
+    private $host = 'shareddb-y.hosting.stackcp.net';
+    private $db_name = 'ttccga-31353943fc';
+    private $username = 'lamn';
+    private $password = 'zpmM>wYcy@+i';
 
     private function __construct() {
         try{

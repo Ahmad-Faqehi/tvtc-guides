@@ -21,14 +21,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
         if($passwordd){
             $_SESSION['memberId:TVTC'] = $id;
-            returnJSON(array('t' => 'حسناً','m' => 'تم تسجيل الدخول بنجاح.','tp' => 'success', 'b' => false));
+            returnJSON(array('t' => 'حسناً','m' => 'تم تسجيل الدخول بنجاح','tp' => 'success', 'b' => false));
         }else{
-            returnJSON(array('t' => 'خطأ','m' => 'تفاصيل تسجيل الدخول الخاصة بك خاطئة ، حاول مرة أخرى.','tp' => 'error', 'b' => true));
+            returnJSON(array('t' => 'خطأ','m' => 'تفاصيل تسجيل الدخول الخاصة بك خاطئة ، حاول مرة أخرى','tp' => 'error', 'b' => true));
         }
 
     }else{
 
-        returnJSON(array('t' => 'خطأ','m' => 'تفاصيل تسجيل الدخول الخاصة بك خاطئة ، حاول مرة أخرى.','tp' => 'error', 'b' => true));
+        returnJSON(array('t' => 'خطأ','m' => 'تفاصيل تسجيل الدخول الخاصة بك خاطئة ، حاول مرة أخرى','tp' => 'error', 'b' => true));
 
     }
 

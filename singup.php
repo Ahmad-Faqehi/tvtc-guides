@@ -123,7 +123,20 @@ if($isLogin){
     }
 
 
+    function wait(){
 
+
+        swal({
+            title: 'جاري العمل',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            text: 'إنتظر قليلا من فضلك',
+            confirmButtonText: null,
+            onOpen: () => {
+                swal.showLoading()
+            }
+        });
+    }
 
     function  singup() {
 
@@ -166,7 +179,7 @@ if($isLogin){
             });
 
         }else {
-
+            wait();
             sendData("reg.php", "email="+email+"&password="+password+"&username="+secound_name)
                 .then(function(response){
                     swal({

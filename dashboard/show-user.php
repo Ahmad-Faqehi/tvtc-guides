@@ -32,8 +32,39 @@
 //    $lable = " نموذج " . $job;
 //}
 
+function getSection($id){
+    $section= "";
+    switch ($id){
+        case 1:
+            $section = "الدعم الفني";
+            break;
+
+        case 2:
+            $section = "الامن";
+            break;
+
+        case 3:
+            $section = "الطبيبة";
+            break;
+
+        case 4:
+            $section = "طالبة";
+            break;
+
+        case 5:
+            $section = "المفاتيح";
+            break;
+
+        default:
+            $section = "";
+
+
+    }
+    return $section;
+}
 ?>
 <?php include "includes/head.php";?>
+
 <style>
     .navbar-nav{
         padding-right: 0;
@@ -133,7 +164,7 @@
                         <!-- Dropdown Card Example -->
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <div class="card-header py-3 ">
                                 <h5 class="m-0 font-weight-bold text-dark text-center">بيانات المسؤلين</h5>
                             </div>
                             <!-- Card Body -->
@@ -150,16 +181,32 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        <?php
+                                        $stmt=$conn->prepare("SELECT name,roal,email,id FROM `users` WHERE roal != 4 ");
+                                        $stmt->execute();
+                                        $count = 0;
+                                        if($stmt->rowCount() > 0) :
+                                        $rows = $stmt->fetchAll();
+                                        foreach ($rows as $row) :
+                                        ?>
                                         <tr>
-                                            <td>نورة محمد</td>
-                                            <td>المفاتيح</td>
-                                            <td><a href="mailto:dfgh@TVTC.com"> dfgh@TVTC.com </a></td>
-                                            <td><a href="edit-user.php" class="btn btn-primary">تعديل</a></td>
+                                            <td><?=$row['name']?></td>
+                                            <td><?php echo  getSection($row['roal'])?></td>
+                                            <td><a href="mailto:<?=$row['email']?>"> <?=$row['email']?> </a></td>
+                                            <td><a href="edit-user.php?id=<?=$row['id']?>" class="btn btn-primary">تعديل</a></td>
                                         </tr>
+                                        <?php
+                                        endforeach;
+                                        endif;
+                                        ?>
                                         </tbody>
                                     </table>
                                 </div>
+                                <div class="text-center">
 
+                                    <a href="add-user.php" class="btn btn-success btn-icon-split"><span class="icon text-white-50"><i class="fas fa-plus"></i></span><span class="text"> أضافة مسؤال</span></a>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -239,9 +286,7 @@
 <script src="js/demo/datatables-demo.js"></script>
 
 
-<!-- Page level custom scripts -->
-<script src="js/demo/chart-area-demo.js"></script>
-<script src="js/demo/chart-pie-demo.js"></script>
+
 
 </body>
 

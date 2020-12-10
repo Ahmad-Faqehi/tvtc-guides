@@ -138,30 +138,85 @@
                             </div>
                             <div class="card-body">
 
+
+                                <?php
+                                if(isset($_POST['add'])):
+                                $name = $_POST['name'];
+                                $email = $_POST['email'];
+                                $password = $_POST['password'];
+                                $re_password = $_POST['re_password'];
+                                $section = $_POST['section'];
+
+                                    $stmt=$conn->prepare("SELECT email FROM users WHERE email=:email");
+                                    $stmt->bindValue(":email", $_POST['email']);
+                                    $stmt->execute();
+
+                                if(empty($email) || empty($name) || empty($password) || empty($re_password)){
+                                    echo "<div class=\"alert alert-danger text-right\"> جميع الحقول مطلوبة </div>";
+                                    exit();
+                                }elseif ($password !== $re_password){
+                                    echo "<div class=\"alert alert-danger text-right\"> كلمة المرور غير متطابقة </div>";
+
+                                }elseif ($section == "0" ) {
+                                    echo "<div class=\"alert alert-danger text-right\"> يجب أختيار القسم </div>";
+                                }elseif($stmt->rowCount() > 0){
+                                    echo "<div class=\"alert alert-danger text-right\"> هذا الائميل مسجل مسبقاً</div>";
+                                }else{
+
+                                    $passwordHashed=password_hash($password, PASSWORD_DEFAULT);
+                                    $stmtz = $conn->prepare("INSERT INTO `users`(`name`, `email`, `password`, `roal`) VALUES (:name,:email,:pass,:roal) ");
+                                    $stmtz->bindValue(":name", $name);
+                                    $stmtz->bindValue(":email", $email);
+                                    $stmtz->bindValue(":pass", $passwordHashed);
+                                    $stmtz->bindValue(":roal", $section);
+                                    $stmtz->execute();
+                                    if ($stmtz->rowCount() > 0) {
+                                        echo "<div class=\"alert alert-success text-right\"> تم الاضافة بنجاح </div>";
+                                    } else {
+                                        echo "<div class=\"alert alert-danger text-right\"> حدث خطا عند الاضافة. حاول مره أخرى </div>";
+                                    }
+
+                                }
+
+
+                                endif;
+                                ?>
+
+
                                 <form action="" method="post" class="text-right">
 
-                                    <label for="username" class="pull-right text-dark">اسم المسؤول</label>
+                                    <label for="username" class="pull-right text-dark">اسم الثنائي للمسؤول</label>
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control form-control-user"  >
+                                        <input type="text" name="name" class="form-control form-control-user"  required>
                                     </div>
 
                                     <label for="username" class="pull-right text-dark">إئميل المسؤول</label>
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control form-control-user"  >
+                                        <input type="email" name="email" class="form-control form-control-user"  required>
+                                    </div>
+
+                                    <label for="pass" class="pull-right text-dark">كلمة المرور</label>
+                                    <div class="form-group">
+                                        <input type="password" name="password" class="form-control form-control-user"  required >
+                                    </div>
+
+                                    <label for="pass" class="pull-right text-dark">أعادة كلمة المرور</label>
+                                    <div class="form-group">
+                                        <input type="password" name="re_password" class="form-control form-control-user"  required >
                                     </div>
 
                                     <label for="username" class="pull-right text-dark">القسم</label>
                                     <div class="form-group">
-                                        <select class="form-control">
-                                            <option>أختار القسم</option>
-                                            <option>الامن</option>
-                                            <option>الدعم الفني</option>
-                                            <option>مسؤولة المفاتيح</option>
-                                            <option>الطبيبة</option>
+                                        <select class="form-control" name="section" required>
+                                            <option value="0">أختار القسم</option>
+                                            <option value="2">الامن</option>
+                                            <option value="1">الدعم الفني</option>
+                                            <option value="5">مسؤولة المفاتيح</option>
+                                            <option value="3">الطبيبة</option>
                                         </select>
                                     </div>
 
-                                    <input type="submit" name="update" value="أضافة" class="btn btn-dark btn-block">
+                                    <input type="submit" name="add" value="أضافة" class="btn btn-dark btn-block">
 
                                 </form>
 
@@ -243,11 +298,6 @@
 
 <!-- Page level custom scripts -->
 <script src="js/demo/datatables-demo.js"></script>
-
-
-<!-- Page level custom scripts -->
-<script src="js/demo/chart-area-demo.js"></script>
-<script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 

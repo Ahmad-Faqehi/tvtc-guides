@@ -46,61 +46,21 @@ color: #6c63ff;}
                     </tr>
                     </thead>
                     <tbody>
+                    <?php
+                    $stmt=$conn->prepare("SELECT * FROM `info_list` where supervisor = 0 ORDER BY `info_list`.`id` ASC ");
+                    $stmt->execute();
+                    if($stmt->rowCount() > 0) {
+                        $rows = $stmt->fetchAll();
+                        foreach ($rows as $row) {
+                            $name = $row['name'];
+                            $depart = $row['depart'];
+                            $email = $row['email'];?>
                     <tr>
-                        <td>هيفاء عبدالله العتيبي</td>
-                        <td>عميدة الكلية التقنية الرقمية بالرياض</td>
-                        <td><a href="mailto:haifa.a@tvtc.gov.sa">haifa.a@tvtc.gov.sa</a></td>
+                        <td><?=$name?></td>
+                        <td><?=$depart?></td>
+                        <td><a href="mailto:<?=$email?>"><?=$email?></a></td>
                     </tr>
-                    <tr>
-                        <td>أثير العمري</td>
-                        <td>مسؤوله رايات</td>
-                        <td><a href="mailto:atheer.a1@tvtc.gov.sa">atheer.a1@tvtc.gov.sa</a></td>
-                    </tr>
-                    <tr>
-                        <td>ثناء الحربي</td>
-                        <td>مسؤوله الاكاديميات</td>
-                        <td><a href="mailto:thalharbi@tvtc.gov.sa">thalharbi@tvtc.gov.sa</a></td>
-                    </tr>
-                    <tr>
-                        <td>رنا الحماد</td>
-                        <td>مسؤوله بلاك بورد</td>
-                        <td><a href="mailto:lmsadminRFDC@tvtc.gov.sa">lmsadminRFDC@tvtc.gov.sa</a></td>
-                    </tr>
-                    <tr>
-                        <td>عهود ناصر المسعد </td>
-                        <td>رئيسة قسم الحاسب الآلي</td>
-                        <td><a href="mailto:ahood.a@tvtc.gov.sa">ahood.a@tvtc.gov.sa</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>ساره خالد البغدادي</td>
-                        <td>رئيسة قسم الدراسات العامة</td>
-                        <td><a href="mailto:s.albaghdadi@tvtc.gov.sa">s.albaghdadi@tvtc.gov.sa</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>زينب ناص الناصر </td>
-                        <td>وكيلة المدربات</td>
-                        <td><a href="mailto:z.alnasser1@tvtc.gov.sa ">z.alnasser1@tvtc.gov.sa </a></td>
-                    </tr>
-
-                    <tr>
-                        <td>ملاك عبدالرحمن اليوسف </td>
-                        <td>وكيلة المتدربات</td>
-                        <td><a href="mailto:m.alyousef@tvtc.gov.sa">m.alyousef@tvtc.gov.sa</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>شهد هذال السبيعي </td>
-                        <td>وحدة التوجيه والارشاد</td>
-                        <td><a href="mailto:salsabiai@tvtc.gov.sa">salsabiai@tvtc.gov.sa</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>تهاني شديد المطيري </td>
-                        <td>وحدة الصحه والسلامة المهنية</td>
-                        <td><a href="mailto:Tahani.a2@tvtc.gov.sa">Tahani.a2@tvtc.gov.sa</a></td>
-                    </tr>
+                    <?php } } ?>
 
                     </tbody>
 
@@ -108,43 +68,48 @@ color: #6c63ff;}
             </div>
 
 
-            <!-- بداية جدول المدربات -->
-<!--            <div class="section-heading col-md-12 text-center  " style="margin-bottom: 1px; margin-top: 30px">-->
-<!--                <h6 class="section-title fonty"> المدربات </h6>-->
-<!--            </div>-->
-<!---->
-<!--            <div class="col-md-12 text-right  table-responsive " style="padding-bottom: 30px">-->
-<!--                <table class="table table-bordered table-hover text-center">-->
-<!---->
-<!--                    <thead>-->
-<!--                    <tr>-->
-<!--                        <th scope="col">الاسم</th>-->
-<!--                        <th scope="col">القسم</th>-->
-<!--                        <th scope="col">الائميل</th>-->
-<!--                    </tr>-->
-<!--                    </thead>-->
-<!--                    <tbody>-->
-<!--                    <tr>-->
-<!--                        <td>رهف علي محمد</td>-->
-<!--                        <td>مُدربة</td>-->
-<!--                        <td><a href="mailto:Test@tvtc.edu.sa">Test@tvtc.edu.sa</a></td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td>سارة أحمد يحيى</td>-->
-<!--                        <td>مُدربة</td>-->
-<!--                        <td><a href="mailto:Test@tvtc.edu.sa">Test@tvtc.edu.sa</a></td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td>آمنة حمود أحمد</td>-->
-<!--                        <td>مُدربة</td>-->
-<!--                        <td><a href="mailto:Test@tvtc.edu.sa">Test@tvtc.edu.sa</a></td>-->
-<!--                    </tr>-->
-<!--                    </tbody>-->
-<!---->
-<!--                </table>-->
-<!--            </div>-->
-            <!-- نهاية جدول المدربات -->
+            <?php
+            $stmt=$conn->prepare("SELECT * FROM `info_list` where supervisor = 1 ORDER BY `info_list`.`id` ASC ");
+            $stmt->execute();
+            if($stmt->rowCount() > 0) {
+            $rows = $stmt->fetchAll();
 
+            ?>
+
+            <!-- بداية جدول المدربات -->
+            <div class="section-heading col-md-12 text-center  " style="margin-bottom: 1px; margin-top: 30px">
+                <h6 class="section-title fonty"> المدربات </h6>
+            </div>
+
+            <div class="col-md-12 text-right  table-responsive " style="padding-bottom: 30px">
+                <table class="table table-bordered table-hover text-center">
+
+                    <thead>
+                    <tr>
+                        <th scope="col">الاسم</th>
+                        <th scope="col">القسم</th>
+                        <th scope="col">الائميل</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                foreach ($rows as $row) {
+                    $name = $row['name'];
+                    $depart = $row['depart'];
+                    $email = $row['email'];
+                    ?>
+                    <tr>
+                        <td><?=$name?></td>
+                        <td><?=$depart?></td>
+                        <td><a href="mailto:<?=$email?>"><?=$email?></a></td>
+                    </tr>
+                    <?php } ?>
+                    </tbody>
+
+                </table>
+            </div>
+            <!-- نهاية جدول المدربات -->
+<?php   }?>
         </div>
         <div class="pb-3"></div>
     </div>

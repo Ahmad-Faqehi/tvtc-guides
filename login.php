@@ -10,6 +10,7 @@ if($isLogin){
     header("Location: index.php"); die();
 }
 ?>
+
 <!--// Breadcrumb Section Start //-->
 <section class="breadcrumb-section jarallax" data-scroll-index="1" data-speed="0.5s" data-jarallax style="background-image: url('img/bg/bg-TVTC.jpeg'); " dir="rtl">
     <div class="container">
@@ -46,7 +47,11 @@ if($isLogin){
                     <input type="password" class="form-input" name="password" id="password"  >
                 </div>
             </div>
-            <div class="col-md-12 text-center pt-1">
+                <div class="col-12 text-right">
+                    <p><a href="forgotpassword.php" class="text-muted" > <i class="fas fa-lock "></i> نسيت كلمة المرور؟ </a></p>
+                </div>
+
+                <div class="col-md-12 text-center pt-1">
                 <div class="contact-btn-left custom-form">
                     <button type="submit" id="contactBtn" onClick="login()" class="primary-button border-none">دخول</button>
                 </div>
@@ -105,7 +110,20 @@ if($isLogin){
 
 
 
+    function wait(){
 
+
+        swal({
+            title: 'جاري التحقق',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            text: 'إنتظر قليلا من فضلك',
+            confirmButtonText: null,
+            onOpen: () => {
+                swal.showLoading()
+            }
+        });
+    }
     function  login() {
 
 
@@ -137,6 +155,7 @@ if($isLogin){
 
         }else {
 
+            wait();
             sendData("login.php", "email="+email+"&password="+password)
                 .then(function(response){
                     swal({

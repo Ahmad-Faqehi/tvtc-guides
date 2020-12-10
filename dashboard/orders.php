@@ -3,33 +3,33 @@
 if(!isset($_GET['do'])): header("Location: index.php"); die(); endif;
 if(isset($_GET['do'])){
 
-    $do = $_GET['do'];
+    $do1 = $_GET['do'];
 
-    switch ($do){
+    switch ($do1){
         case 'support':
-            $job = "الدعم الفني";
+            $job1 = "الدعم الفني";
             break;
 
         case 'key':
-            $job = "مسؤولة المفاتيح";
+            $job1 = "مسؤولة المفاتيح";
             break;
 
         case 'security':
-            $job = "الامن";
+            $job1 = "الامن";
             break;
 
         case 'doctor':
-            $job = "الطبيبة";
+            $job1 = "الطبيبة";
             break;
 
         default:
-            $job = "";
+            $job1 = "";
     }
-    if(empty($job)){
+    if(empty($job1)){
         header("Location: index.php"); die();
     }
 
-    $lable = " نموذج " . $job;
+    $lable = " نموذج " . $job1;
 }
 
 ?>
@@ -131,7 +131,7 @@ if(isset($_GET['do'])){
                     <div class="col-xl-12 col-md-12 mb-4" dir="rtl">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h5 class="m-0 font-weight-bold text-dark Fonty text-center">طلبات <span><?=$job?></span></h5>
+                                <h5 class="m-0 font-weight-bold text-dark Fonty text-center">طلبات <span><?=$job1?></span></h5>
                             </div>
                             <div class="card-body">
 
@@ -148,7 +148,8 @@ if(isset($_GET['do'])){
                                     <tbody>
 
                                     <?php
-                                    $stmt=$conn->prepare("SELECT `order`.`id`, date_order, name, important FROM `order` JOIN `users` on `order`.from_who = `users`.id WHERE `order`.`to_who`='$do'");
+                                    $stmt=$conn->prepare("SELECT `order`.`id`, date_order, name, important FROM `order` JOIN `users` on `order`.from_who = `users`.id WHERE `order`.`to_who`=:var");
+                                    $stmt->bindValue(":var", $do1);
                                     $stmt->execute();
                                     $empty = false;
 
@@ -168,7 +169,7 @@ if(isset($_GET['do'])){
                                         <tr class="<?php echo ($import) ? 'text-danger' : "" ?>">
                                             <th scope="row"><?=$invID?></th>
                                             <td><?=$name?> </td>
-                                            <td><a href="page_details.php?do=<?=$do?>&order_id=<?=$row['id']?>" class="btn btn-info"> عرض </a>  </td>
+                                            <td><a href="page_details.php?do=<?=$do1?>&order_id=<?=$row['id']?>" class="btn btn-info"> عرض </a>  </td>
                                         </tr>
 
                                    <?php }

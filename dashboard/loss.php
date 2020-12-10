@@ -32,8 +32,23 @@
 //    $lable = " نموذج " . $job;
 //}
 
+$msg_false = false;
+$msg_true = false;
+
 ?>
 <?php include "includes/head.php";?>
+
+<?php
+if(isset($_SESSION['alert:true'])){
+    $msg_true = true;
+    unset($_SESSION['alert:true']);
+}
+
+if (isset($_SESSION['alert:false'])){
+    $msg_false = true;
+    unset($_SESSION['alert:false']);
+}
+?>
 <style>
     .navbar-nav{
         padding-right: 0;
@@ -286,8 +301,17 @@
                             <div class="card-body">
 
                                 <div class="row justify-content-center">
+                                    <div class="pb-3">
+                                        <a href="add-lose.php" class="btn btn-success btn-icon-split"><span class="icon text-white-50"><i class="fas fa-plus"></i></span><span class="text"> أضافة مفقود جديد</span></a>
+                                    </div>
                                     <div class="blog-sidebar" style="width: 85%;">
 
+                                        <?php if($msg_true): ?>
+                                            <div class="alert alert-success">  تم الحذف بنجاح </div>
+                                        <?php endif; ?>
+                                        <?php if($msg_false): ?>
+                                            <div class="alert alert-danger">  حدث خطا أثناء الحذف </div>
+                                        <?php endif; ?>
                                         <div class="blog-widgets text-right " >
 
 
@@ -300,7 +324,7 @@
                                             $rows = $stmt->fetchAll();
                                             foreach ($rows as $row) :
                                             $title = $row['title'];
-                                            $description = $row['description'];
+                                            $id_lost = $row['id'];
                                             $image = $row['image'];
                                             $date = $row['date'];
                                             $state = $row['state'];
@@ -308,18 +332,18 @@
 
                                                 <div class="recent-post-item clearfix">
                                                     <div class="  mr-3">
-                                                        <a href="soon.html">
+                                                        <a href="#" data-toggle="modal" data-target="#show_m<?=$id_lost?>">
                                                             <img class="img-fluid w-50" src="../img/lost/<?php if(!empty($image)): echo $image; else: echo "placeholder.png"; endif; ?>" alt="صورة المفقودات" style="float: left;">
                                                         </a>
                                                     </div>
                                                     <div class="recent-post-body">
-                                                        <a href="soon.html">
+                                                        <a href="#" data-toggle="modal" data-target="#show_m<?=$id_lost?>">
                                                             <h6 class="recent-post-title fo "><?=$title?></h6>
                                                         </a>
                                                         <p class="recent-post-date" dir="ltr"><?php echo  date('d M, Y', $date)?></p>
-                                                        <p class="recent-post-date" dir="ltr"><a href="edit-lost.php?id=<?=$row['id']?>" class="btn btn-primary btn-sm"> تعديل </a> </p>
+                                                        <p class="recent-post-date" dir=""><a dir="ltr" href="edit-lost.php?id=<?=$row['id']?>" class="btn btn-primary btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-edit " style="color: rgba(255,255,255,.5)!important; margin-right: 0px;"></i></span><span class="text">تعديل</span></a>&nbsp; <a href="#dlete" onclick="myf(<?=$row['id']?>)" class="btn btn-danger btn-circle  btn-sm"><i class="fas fa-trash text-white" style="margin-right: 0px;"></i></a>  </p>
                                                         <?php if($state): ?>
-                                                        <p class="recent-post-date" dir="ltr"> <a href="#" class="btn btn-success text-white btn-circle btn-sm"><i class="fas fa-check text-white" style="margin-right: 0px;"></i></a> </p>
+                                                            <div > <a href="#"  class="btn btn-success text-white btn-circle btn-sm"><i class="fas fa-check text-white" style="margin-right: 0px;"></i></a>   </div>
                                                     <?php endif; ?>
                                                     </div>
                                                 </div>
@@ -339,6 +363,7 @@
 
                                     </div>
                                 </div>
+
                     </div>
 
                 </div>
@@ -347,6 +372,44 @@
 
         </div>
 
+
+                <!-- Todo Show models for every lost -->
+                <?php
+                foreach ($rows as $row) :
+                    $id_lost = $row['id'];
+                    $title = $row['title'];
+                    $description = $row['description'];
+
+                    if($description):
+                        ?>
+                        <div id="show_m<?=$id_lost?>" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <div class="modal-content">
+                                    <div class="modal-header bg-dark" style="direction: rtl;">
+                                        <h5 class="modal-title text-white"> <?=$title?> </h5>
+                                    </div>
+                                    <div class="modal-body" style="font-size: 16px;">
+                                        <div class="text-right">
+                                            <p class="text-justify text-dark  p-2" dir="rtl">
+                                                <?=$description?>
+                                            </p>
+
+                                        </div>
+
+                                        <div class="text-center pt-2">
+                                            <hr>
+                                            <button type="button" class=" btn btn-secondary text-center" data-dismiss="modal"> اغلاق </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    <?php
+                    endif;
+                endforeach;
+                ?>
 
         <!-- Content Row -->
 
@@ -380,6 +443,27 @@
     </a>
 </div>
 
+<div id="delete-lost" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-white"> </h4>
+            </div>
+            <div class="modal-body" style="font-size: 16px;">
+                <div class="text-center">
+                    <p class="text-justify text-dark text-center">
+                        هل متاكد من حذف هذا المفقود؟
+                    </p>
+                    <a href="#" id="delete-link" class="btn btn-dark"> نعم </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -399,6 +483,8 @@
     </div>
 </div>
 
+
+
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -416,7 +502,14 @@
 <!-- Page level custom scripts -->
 <script src="js/demo/datatables-demo.js"></script>
 
+<script>
 
+    function  myf(id){
+
+        $("#delete-link").attr("href", "delete-page.php?type=lost&id="+id);
+        $("#delete-lost").modal("show");
+    }
+</script>
 <!-- Page level custom scripts -->
 
 

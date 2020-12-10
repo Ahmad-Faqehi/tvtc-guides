@@ -8,7 +8,7 @@ class Database
     protected $_db;
     static $_instance;
     private $host = 'localhost';
-    private $db_name = 'tvtc';
+    private $db_name = 'tvtc_test';
     private $username = 'root';
     private $password = '';
 

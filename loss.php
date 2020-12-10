@@ -12,7 +12,10 @@
             font-size: 25px;
         }
     }
-
+    .modal-header .close {
+        /* padding: 1rem 1rem; */
+        /* margin: -1rem -1rem -1rem auto; */
+    }
 
 </style>
 <!--// Header Start //-->
@@ -39,6 +42,7 @@
 
         <div class="row justify-content-center">
             <div class="blog-sidebar" style="width: 85%;">
+<!--                <a href="#" data-toggle="modal" data-target="#about-us"> test </a>-->
 
 <!--                <div class="blog-widgets">-->
 <!--                    <h5 class="inner-header-title">Search</h5>-->
@@ -61,8 +65,8 @@
                     if($stmt->rowCount() > 0) {
                         $rows = $stmt->fetchAll();
                         foreach ($rows as $row) {
+                            $id_lost = $row['id'];
                             $title = $row['title'];
-                            $description = $row['description'];
                             $image = $row['image'];
                             $date = $row['date'];
                             $state = $row['state'];
@@ -71,12 +75,12 @@
                             <?php if($state != 1): $count++; ?>
                             <div class="recent-post-item clearfix">
                                 <div class="  mr-3">
-                                    <a href="soon.html">
+                                    <a  href="#" data-toggle="modal" data-target="#show_m<?=$id_lost?>">
                                         <img class="img-fluid w-50" src="img/lost/<?php if(!empty($image)): echo $image; else: echo "placeholder.png"; endif; ?>" alt="صورة المفقود" style="float: left;">
                                     </a>
                                 </div>
                                 <div class="recent-post-body">
-                                    <a href="soon.html">
+                                    <a  href="#" data-toggle="modal" data-target="#show_m<?=$id_lost?>">
                                         <h6 class="recent-post-title fo "><?=$title?></h6>
                                     </a>
                                     <p class="recent-post-date" dir="ltr"><i class="far fa-clock"></i><?php echo  date('d M, Y', $date)?></p>
@@ -103,6 +107,45 @@
     </div>
 </section>
 <!--// Services End  //-->
+
+
+<!-- Todo Show models for every lost -->
+<?php
+foreach ($rows as $row) :
+    $id_lost = $row['id'];
+    $title = $row['title'];
+    $description = $row['description'];
+
+    if($description):
+    ?>
+<div id="show_m<?=$id_lost?>" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header" style="direction: rtl;background-color: #6362c5!important;">
+                <h5 class="modal-title text-white"> <?=$title?> </h5>
+            </div>
+            <div class="modal-body" style="font-size: 16px;">
+                <div class="text-right">
+                    <p class="text-justify text-dark  p-2" dir="rtl">
+                        <?=$description?>
+                    </p>
+
+                </div>
+
+                <div class="text-center pt-2">
+                    <hr>
+                <button type="button" class=" btn btn-secondary text-center" data-dismiss="modal"> اغلاق </button>
+            </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<?php
+endif;
+endforeach;
+?>
 
 <!--// Footer Start //-->
 <footer class="footer">

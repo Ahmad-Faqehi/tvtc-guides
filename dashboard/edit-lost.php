@@ -27,6 +27,7 @@ $row = $stmt->fetch();
 
 $msg_false = false;
 $msg_secss = false;
+$msg_img = false;
 
 if(isset($_SESSION['alert:false'])){
     $msg_false = true;
@@ -35,6 +36,10 @@ if(isset($_SESSION['alert:false'])){
 if (isset($_SESSION['alert:scs'])){
     $msg_secss = true;
     unset($_SESSION['alert:scs']);
+}
+if (isset($_SESSION['alert:img'])){
+    $msg_img = true;
+    unset($_SESSION['alert:img']);
 }
 
 if(isset($_POST['upload']))
@@ -252,10 +257,13 @@ if (!empty($Image)) {
                                 ?>
 
                                 <?php if($msg_false): ?>
-                                    <div class="alert alert-danger text-right" role="alert"> حدث خطا عند الاضافة </div>
+                                    <div class="alert alert-danger text-right" role="alert"> عذراً حدث خطا غير متوقع. حاول مرة أخرى </div>
                                 <?php endif; ?>
                                 <?php if($msg_secss): ?>
                                     <div class="alert alert-success text-right" role="alert"> تم التحديث بنجاح </div>
+                                <?php endif; ?>
+                                <?php if($msg_img): ?>
+                                    <div class="alert alert-warning text-right" role="alert"> تم حذف الصورة </div>
                                 <?php endif; ?>
                                 <form action="" method="post" class="text-right" enctype="multipart/form-data">
 
@@ -270,6 +278,7 @@ if (!empty($Image)) {
                                         if(!empty($row['image'])):
                                         ?>
                                             <img src="../img/lost/<?=$row['image']?>" class="  img-fluid pb-1">
+                                        <p><a href="#" class="btn-link"  data-toggle="modal" data-target="#delete-photo">حذف الصورة</a> </p>
                                         <?php
                                         endif;
                                         ?>
@@ -331,6 +340,26 @@ if (!empty($Image)) {
     </a>
 </div>
 
+<div id="delete-photo" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-white"> </h4>
+            </div>
+            <div class="modal-body" style="font-size: 16px;">
+                <div class="text-center">
+                <p class="text-justify text-dark text-center">
+                    متاكد من حذف الصورة؟
+                </p>
+                <a href="delete-page.php?id=<?=$lost_id?>&type=img" class="btn btn-dark"> نعم </a>
+            </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

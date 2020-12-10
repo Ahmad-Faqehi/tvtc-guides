@@ -34,6 +34,21 @@
 
 ?>
 <?php include "includes/head.php";?>
+<?php
+$updated = false;
+if(!isset($_GET['id'])){exit(header('Location: index.php')); die();}
+$userId = (int)$_GET['id'];
+if(empty($userId)){exit(header('Location: index.php')); die();}
+$stmt=$conn->prepare("SELECT * FROM users WHERE id=:id");
+$stmt->bindValue(":id", $userId);
+$stmt->execute();
+$row = $stmt->fetch();
+if($row['roal'] == 4 ){
+    $aStudent = true;
+}else{
+    $aStudent = false;
+}
+?>
 <style>
     .navbar-nav{
         padding-right: 0;
@@ -95,17 +110,6 @@
                     <i class="fa fa-bars"></i>
                 </button>
 
-                <!-- Topbar Search -->
-                <!--          <form class="d-none d-sm-inline-block form-inline mr-auto mr-md-3 my-2 my-md-0 mw-100 navbar-search">-->
-                <!--            <div class="input-group">-->
-                <!--              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">-->
-                <!--              <div class="input-group-append">-->
-                <!--                <button class="btn btn-dark" type="button">-->
-                <!--                  <i class="fas fa-search fa-sm"></i>-->
-                <!--                </button>-->
-                <!--              </div>-->
-                <!--            </div>-->
-                <!--          </form>-->
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav mr-auto">
@@ -145,32 +149,96 @@
 
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-dark Font-tajawal text-center">  تعديل بيانات المسؤول  </h6>
+                                <h6 class="m-0 font-weight-bold text-dark Font-tajawal text-center">  تعديل بيانات <?php echo ($aStudent) ? 'الطالب' : "المسؤول" ?>  </h6>
                             </div>
                             <div class="card-body">
 
+                                <?php
+                                if(isset($_POST['update'])){
+                                    $name = $_POST['name'];
+                                    $email = $_POST['email'];
+                                    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                                       exit("<div class=\"alert alert-danger text-center \"> الائميل غير صحيح </div>");
+                                    }
+
+                                    // check if email is alredy used
+                                    $stmte=$conn->prepare("SELECT email FROM users where email = :email");
+                                    $stmte->bindValue(":email", $email);
+                                    $stmte->execute();
+
+
+
+                                    if($aStudent){
+                                        //Todo Updtet student
+
+
+                                            if($email == $row['email']):
+                                            else:
+                                               if($stmte->rowCount() > 0){
+                                                   exit("<div class=\"alert alert-danger text-center \"> هذا الائميل مُسجل مسبقاً <a href='' class='btn-link'> عودة </a> </div>");
+                                               }
+                                            endif;
+
+                                        $stmtu=$conn->prepare("UPDATE `users` SET `name`=:name,`email`=:email WHERE id = :id");
+                                        $stmtu->bindValue(":name", $name);
+                                        $stmtu->bindValue(":email", $email);
+                                        $stmtu->bindValue(":id", $userId);
+                                        $stmtu->execute();
+                                        if($stmtu->rowCount() > 0){
+                                            $updated = true;
+                                            echo "<div class=\"alert alert-success text-center\"> تم التحديث بيانات الطالب بنجاح </div>";
+                                        }
+
+                                    }else{
+                                        //Todo Update one in Depart
+
+                                        $depart = $_POST['dep'];
+
+                                        if($depart == "0"){ exit("<div class=\"alert alert-danger text-center\"> يجب أختيار القسم <a href='' class='btn-link'> عودة </a> </div>"); }
+
+                                        $stmtu=$conn->prepare("UPDATE `users` SET `name`=:name,`email`=:email,roal=:roal WHERE id = :id");
+                                        $stmtu->bindValue(":name", $name);
+                                        $stmtu->bindValue(":email", $email);
+                                        $stmtu->bindValue(":roal", $depart);
+                                        $stmtu->bindValue(":id", $userId);
+                                        $stmtu->execute();
+                                        if($stmtu->rowCount() > 0){
+                                            $updated = true;
+                                            echo "<div class=\"alert alert-success text-center\"> تم التحديث بيانات المسؤال بنجاح </div>";
+                                        }
+
+                                    }
+                                }
+                                ?>
+
                                 <form action="" method="post" class="text-right">
 
-                                    <label for="username" class="pull-right text-dark">اسم المسؤول</label>
+                                    <label for="username" class="pull-right text-dark">اسم <?php echo ($aStudent) ? 'الطالب' : "المسؤول" ?></label>
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control form-control-user"  >
+                                        <input type="text" name="name" class="form-control form-control-user"  value="<?php if($updated){ echo $name;}else{  echo $row['name']; }?>" required>
                                     </div>
 
-                                    <label for="username" class="pull-right text-dark">إئميل المسؤول</label>
+                                    <label for="username" class="pull-right text-dark">إئميل <?php echo ($aStudent) ? 'الطالب' : "المسؤول" ?></label>
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control form-control-user"  >
+                                        <input type="email" name="email" class="form-control form-control-user" value="<?php if($updated){ echo $email;}else{  echo $row['email']; }?>" required>
                                     </div>
 
+                                    <?php
+                                    if(!$aStudent):
+                                    ?>
                                     <label for="username" class="pull-right text-dark">القسم</label>
                                     <div class="form-group">
-                                        <select class="form-control">
-                                            <option>أختار القسم</option>
-                                            <option>الامن</option>
-                                            <option>الدعم الفني</option>
-                                            <option>مسؤولة المفاتيح</option>
-                                            <option>الطبيبة</option>
+                                        <select class="form-control" name="dep">
+                                            <option value="0" id="0">أختار القسم</option>
+                                            <option value="2" id="2">الامن</option>
+                                            <option value="1" id="1">الدعم الفني</option>
+                                            <option value="5" id="5">مسؤولة المفاتيح</option>
+                                            <option value="3" id="3" >الطبيبة</option>
                                         </select>
                                     </div>
+                                    <?php
+                                    endif;
+                                    ?>
 
                                     <input type="submit" name="update" value="تعديل" class="btn btn-dark btn-block">
 
@@ -257,9 +325,9 @@
 
 
 <!-- Page level custom scripts -->
-<script src="js/demo/chart-area-demo.js"></script>
-<script src="js/demo/chart-pie-demo.js"></script>
-
+<script>
+    $('#<?php if($updated){ echo $depart;}else{  echo $row['roal']; }?>').attr("selected","selected");
+</script>
 </body>
 
 </html>

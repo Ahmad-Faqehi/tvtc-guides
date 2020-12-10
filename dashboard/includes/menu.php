@@ -76,12 +76,12 @@
 
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link text-center" href="add-lose.php">
-            <i class="fas fa-plus-square"></i>
-            <span>أضافة مفقود</span>
-        </a>
-    </li>
+<!--    <li class="nav-item">-->
+<!--        <a class="nav-link text-center" href="add-lose.php">-->
+<!--            <i class="fas fa-plus-square"></i>-->
+<!--            <span>أضافة مفقود</span>-->
+<!--        </a>-->
+<!--    </li>-->
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
@@ -101,17 +101,23 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link text-center" href="add-user.php">
-            <i class="fas fa-user-plus"></i>
-            <span> أضافة مسؤول </span>
+        <a class="nav-link text-center" href="list.php">
+            <i class="fas fa-file-signature"></i>
+            <span> بيانات التواصل </span>
         </a>
-    </li>
+    </li>    <!-- Nav Item - Pages Collapse Menu -->
+<!--    <li class="nav-item">-->
+<!--        <a class="nav-link text-center" href="add-user.php">-->
+<!--            <i class="fas fa-user-plus"></i>-->
+<!--            <span> أضافة مسؤول </span>-->
+<!--        </a>-->
+<!--    </li>-->
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link text-center" href="show-user.php">
-            <i class="fas fa-user-friends"></i>
-            <span>عرض المسؤلين</span>
+            <i class="fas fa-users-cog"></i>
+            <span>مسؤلين الطلبات</span>
         </a>
     </li>
 
@@ -119,7 +125,7 @@
     <li class="nav-item">
         <a class="nav-link text-center" href="show-stu.php">
             <i class="fas fa-users"></i>
-            <span>عرض المستخدمين</span>
+            <span>عرض الطلاب</span>
         </a>
     </li>
 

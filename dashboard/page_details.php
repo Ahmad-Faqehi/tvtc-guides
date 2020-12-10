@@ -4,30 +4,30 @@ if(!isset($_GET['do']) and $_GET['order_id']): header("Location: index.php"); di
 if(!is_numeric($_GET['order_id']) || empty($_GET['order_id'])){  exit(header('Location: index.php')); die();}
 if(isset($_GET['do']) and $_GET['order_id']){
 
-    $order_id = (int)$_GET['order_id'];
-    $do = $_GET['do'];
+    $order_id1 = (int)$_GET['order_id'];
+    $do1 = $_GET['do'];
 
-    switch ($do){
+    switch ($do1){
         case 'support':
-            $job = "الدعم الفني";
+            $job1 = "الدعم الفني";
             break;
 
         case 'key':
-            $job = "مسؤولة المفاتيح";
+            $job1 = "مسؤولة المفاتيح";
             break;
 
         case 'security':
-            $job = "الامن";
+            $job1 = "الامن";
             break;
 
         case 'doctor':
-            $job = "الطبيبة";
+            $job1 = "الطبيبة";
             break;
 
         default:
-            $job = "";
+            $job1 = "";
     }
-    if(empty($job)){
+    if(empty($job1)){
         header("Location: index.php"); die();
     }
 
@@ -87,7 +87,7 @@ if(isset($_GET['do']) and $_GET['order_id']){
     if (isset($_GET['read'])){
 
     $stmtup = $conn->prepare("UPDATE `order` SET reared = 1 WHERE id = :ido");
-    $stmtup->bindValue(":ido", $order_id);
+    $stmtup->bindValue(":ido", $order_id1);
     $stmtup->execute();
     }
 
@@ -147,7 +147,7 @@ if(isset($_GET['do']) and $_GET['order_id']){
                     <div class="col-xl-12 col-md-12 mb-4" dir="rtl">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h5 class="m-0 font-weight-bold text-dark Fonty text-center">تفاصيل طلب  <span><?=$job?></span></h5>
+                                <h5 class="m-0 font-weight-bold text-dark Fonty text-center">تفاصيل طلب  <span><?=$job1?></span></h5>
                             </div>
                             <div class="card-body">
 
@@ -158,8 +158,8 @@ if(isset($_GET['do']) and $_GET['order_id']){
 
                                 $tag = "<p class='text-danger text-center' > عذرا حصل خطا!!  <br> <a href='index.php' class=' btn btn-link text-center '> عودة </a> </p>";
                                 $stmt= $conn->prepare("SELECT `order`.`id`, date_order, name, important, email, message FROM `order` JOIN `users` on `order`.from_who = `users`.id WHERE `order`.`id`=:idorder and  `order`.`to_who` = :tohow ");
-                                $stmt->bindValue(":idorder", $order_id);
-                                $stmt->bindValue(":tohow", $do);
+                                $stmt->bindValue(":idorder", $order_id1);
+                                $stmt->bindValue(":tohow", $do1);
                                 $stmt->execute();
                                 $row = $stmt->fetch();
 

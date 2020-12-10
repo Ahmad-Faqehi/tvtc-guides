@@ -132,7 +132,7 @@
                         <!-- Dropdown Card Example -->
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <div class="card-header py-3 ">
                                 <h5 class="m-0 font-weight-bold text-dark text-center">بيانات الطلاب</h5>
                             </div>
                             <!-- Card Body -->
@@ -148,11 +148,23 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>سارة علي</td>
-                                            <td><a href="mailto:dfgh@TVTC.com"> dfgh@TVTC.com </a></td>
-                                            <td><a href="edit-user.php" class="btn btn-primary">تعديل</a></td>
-                                        </tr>
+                                        <?php
+                                        $stmt=$conn->prepare("SELECT name,email,id FROM `users` WHERE roal = 4 ");
+                                        $stmt->execute();
+                                        $count = 0;
+                                        if($stmt->rowCount() > 0) :
+                                            $rows = $stmt->fetchAll();
+                                            foreach ($rows as $row) :
+                                                ?>
+                                                <tr>
+                                                    <td><?=$row['name']?></td>
+                                                    <td><a href="mailto:<?=$row['email']?>"> <?=$row['email']?> </a></td>
+                                                    <td><a href="edit-user.php?id=<?=$row['id']?>" class="btn btn-primary">تعديل</a></td>
+                                                </tr>
+                                            <?php
+                                            endforeach;
+                                        endif;
+                                        ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -235,10 +247,6 @@
 <!-- Page level custom scripts -->
 <script src="js/demo/datatables-demo.js"></script>
 
-
-<!-- Page level custom scripts -->
-<script src="js/demo/chart-area-demo.js"></script>
-<script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 

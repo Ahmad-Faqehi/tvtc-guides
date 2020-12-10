@@ -190,7 +190,8 @@ if(isset($_POST['upload'])) {
                                 <div class="alert alert-danger text-right" role="alert"> حدث خطا عند الاضافة </div>
                                 <?php endif; ?>
                                 <?php if($msg_secss): ?>
-                                    <div class="alert alert-success text-right" role="alert"> تم الاضافة بنجاح </div>
+                                    <div class="alert alert-success text-right" role="alert"> تم الاضافة بنجاح. لعرض المفقودات أضغط
+                                        <a href="loss.php" class="btn-link"> هنا </a> </div>
                                 <?php endif; ?>
                                 <form action="" method="post" class="text-right" enctype="multipart/form-data">
 
