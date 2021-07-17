@@ -1,6 +1,4 @@
 # tvtc-guides
-=======
-
 
 
 [![LinkedIn][linkedin-shield]][linkedin-url]
@@ -104,4 +102,4 @@ Project Link: [https://github.com/Ahmad-Faqehi/tvtc-guides](https://github.com/A
 [twittwe-url]: https://twitter.com/A_F775
 [github-shield]: https://img.shields.io/badge/-github-black.svg?style=for-the-badge&logo=github&colorB=555
 [github-url]: https://github.com/Ahmad-Faqehi
->>>>>>> 1b6ff60dc0e99002907a85ab4675971fa4b562ed
+
