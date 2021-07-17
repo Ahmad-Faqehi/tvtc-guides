@@ -42,8 +42,8 @@ if(empty($userId)){exit(header('Location: index.php')); die();}
 $stmt=$conn->prepare("SELECT * FROM users WHERE id=:id");
 $stmt->bindValue(":id", $userId);
 $stmt->execute();
-$row = $stmt->fetch();
-if($row['roal'] == 4 ){
+$rowz = $stmt->fetch();
+if($rowz['roal'] == 4 ){
     $aStudent = true;
 }else{
     $aStudent = false;
@@ -172,7 +172,7 @@ if($row['roal'] == 4 ){
                                         //Todo Updtet student
 
 
-                                            if($email == $row['email']):
+                                            if($email == $rowz['email']):
                                             else:
                                                if($stmte->rowCount() > 0){
                                                    exit("<div class=\"alert alert-danger text-center \"> هذا الائميل مُسجل مسبقاً <a href='' class='btn-link'> عودة </a> </div>");
@@ -215,12 +215,12 @@ if($row['roal'] == 4 ){
 
                                     <label for="username" class="pull-right text-dark">اسم <?php echo ($aStudent) ? 'الطالب' : "المسؤول" ?></label>
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control form-control-user"  value="<?php if($updated){ echo $name;}else{  echo $row['name']; }?>" required>
+                                        <input type="text" name="name" class="form-control form-control-user"  value="<?php if($updated){ echo $name;}else{  echo $rowz['name']; }?>" required>
                                     </div>
 
                                     <label for="username" class="pull-right text-dark">إئميل <?php echo ($aStudent) ? 'الطالب' : "المسؤول" ?></label>
                                     <div class="form-group">
-                                        <input type="email" name="email" class="form-control form-control-user" value="<?php if($updated){ echo $email;}else{  echo $row['email']; }?>" required>
+                                        <input type="email" name="email" class="form-control form-control-user" value="<?php if($updated){ echo $email;}else{  echo $rowz['email']; }?>" required>
                                     </div>
 
                                     <?php
@@ -326,7 +326,7 @@ if($row['roal'] == 4 ){
 
 <!-- Page level custom scripts -->
 <script>
-    $('#<?php if($updated){ echo $depart;}else{  echo $row['roal']; }?>').attr("selected","selected");
+    $('#<?php if($updated){ echo $depart;}else{  echo $rowz['roal']; }?>').attr("selected","selected");
 </script>
 </body>
 

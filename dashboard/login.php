@@ -108,9 +108,6 @@ session_start();
                                 <div class="text-center">
                                     <a class="small" href="../forgotpassword.php">نسيت كلمة المرور؟</a>
                                 </div>
-<!--                                <div class="text-center">-->
-<!--                                    <a class="small" href="register.php">ليس لديك حساب بعد؟ تسجيل جديد</a>-->
-<!--                                </div>-->
                             </div>
                         </div>
                     </div>

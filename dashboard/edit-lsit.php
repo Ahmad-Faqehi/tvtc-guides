@@ -1,38 +1,3 @@
-<?php
-
-//if(!isset($_GET['do'])): header("Location: index.php"); die(); endif;
-//if(isset($_GET['do'])){
-//
-//    $do = $_GET['do'];
-//
-//    switch ($do){
-//        case 'support':
-//            $job = "الدعم الفني";
-//            break;
-//
-//        case 'key':
-//            $job = "مسؤولة المفاتيح";
-//            break;
-//
-//        case 'security':
-//            $job = "الامن";
-//            break;
-//
-//        case 'doctor':
-//            $job = "الطبيبة";
-//            break;
-//
-//        default:
-//            $job = "";
-//    }
-//    if(empty($job)){
-//        header("Location: index.php"); die();
-//    }
-//
-//    $lable = " نموذج " . $job;
-//}
-
-?>
 <?php include "includes/head.php";?>
 <?php
 $updated = false;
@@ -42,7 +7,7 @@ if(empty($userId)){exit(header('Location: index.php')); die();}
 $stmt=$conn->prepare("SELECT * FROM info_list WHERE id=:id");
 $stmt->bindValue(":id", $userId);
 $stmt->execute();
-$row = $stmt->fetch();
+$rowz = $stmt->fetch();
 
 ?>
 <style>
@@ -184,17 +149,17 @@ $row = $stmt->fetch();
 
                                     <label for="username" class="pull-right text-dark">الاسم</label>
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control form-control-user" value="<?php if($updated){ echo $name;}else{  echo $row['name']; }?>" required>
+                                        <input type="text" name="name" class="form-control form-control-user" value="<?php if($updated){ echo $name;}else{  echo $rowz['name']; }?>" required>
                                     </div>
 
                                     <label for="username" class="pull-right text-dark">الائميل</label>
                                     <div class="form-group">
-                                        <input type="email" name="email" class="form-control form-control-user" value="<?php if($updated){ echo $name;}else{  echo $row['email']; }?>"  required>
+                                        <input type="email" name="email" class="form-control form-control-user" value="<?php if($updated){ echo $email;}else{  echo $rowz['email']; }?>"  required>
                                     </div>
 
                                     <label for="pass" class="pull-right text-dark">القسم</label>
                                     <div class="form-group">
-                                        <input type="text" name="depart" class="form-control form-control-user" value="<?php if($updated){ echo $name;}else{  echo $row['depart']; }?>"  required >
+                                        <input type="text" name="depart" class="form-control form-control-user" value="<?php if($updated){ echo $depart;}else{  echo $rowz['depart']; }?>"  required >
                                     </div>
 
                                     <input type="submit" name="update" value="تعديل" class="btn btn-dark btn-block">

@@ -1,37 +1,5 @@
 <?php
 
-//if(!isset($_GET['do'])): header("Location: index.php"); die(); endif;
-//if(isset($_GET['do'])){
-//
-//    $do = $_GET['do'];
-//
-//    switch ($do){
-//        case 'support':
-//            $job = "الدعم الفني";
-//            break;
-//
-//        case 'key':
-//            $job = "مسؤولة المفاتيح";
-//            break;
-//
-//        case 'security':
-//            $job = "الامن";
-//            break;
-//
-//        case 'doctor':
-//            $job = "الطبيبة";
-//            break;
-//
-//        default:
-//            $job = "";
-//    }
-//    if(empty($job)){
-//        header("Location: index.php"); die();
-//    }
-//
-//    $lable = " نموذج " . $job;
-//}
-
 function getSection($id){
     $section= "";
     switch ($id){

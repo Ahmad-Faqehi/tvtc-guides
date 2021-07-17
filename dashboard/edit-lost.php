@@ -17,10 +17,9 @@ $tag = "<p class='text-danger text-center' > عذرا حصل خطا!!  <br> <a h
 $stmt= $conn->prepare("SELECT * FROM `lost` WHERE id =:id");
 $stmt->bindValue(":id", $lost_id);
 $stmt->execute();
-$row = $stmt->fetch();
+$rowz = $stmt->fetch();
 
-
-
+$title  = $rowz['title'];
 
 
 
@@ -269,15 +268,15 @@ if (!empty($Image)) {
 
                                     <label for="username" class="pull-right text-dark">أسم المفقود</label>
                                     <div class="form-group">
-                                        <input type="text" name="loss-name" class="form-control form-control-user" value="<?=$row['title']?>" required placeholder="مثال: جوال ايفون7 , بطاقة صرافة... ">
+                                        <input type="text" name="loss-name" class="form-control form-control-user" value="<?=$rowz['title']?>" required placeholder="مثال: جوال ايفون7 , بطاقة صرافة... ">
                                     </div>
 
                                     <label for="email" class="pull-right text-dark">صورة المفقود</label>
                                     <div class="form-group">
                                         <?php
-                                        if(!empty($row['image'])):
+                                        if(!empty($rowz['image'])):
                                         ?>
-                                            <img src="../img/lost/<?=$row['image']?>" class="  img-fluid pb-1">
+                                            <img src="../img/lost/<?=$rowz['image']?>" class="  img-fluid pb-1">
                                         <p><a href="#" class="btn-link"  data-toggle="modal" data-target="#delete-photo">حذف الصورة</a> </p>
                                         <?php
                                         endif;
@@ -287,12 +286,12 @@ if (!empty($Image)) {
 
                                     <div class="form-group">
                                         <label for="password" class="pull-right text-dark">التفاصيل  <small>(أختياري)</small></label>
-                                        <textarea class=" form-control form-input" placeholder="أكتب التفاصيل هنا..." cols="50" rows="10" name="description" autocomplete="off"><?php if(!empty($row['description'])){echo $row['description']; } ?></textarea>
+                                        <textarea class=" form-control form-input" placeholder="أكتب التفاصيل هنا..." cols="50" rows="10" name="description" autocomplete="off"><?php if(!empty($rowz['description'])){echo $rowz['description']; } ?></textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label for=""> تم العثور </label>
-                                        <input type="checkbox" name="state" value="1" <?php if($row['state']){ echo "checked";} ?> >
+                                        <input type="checkbox" name="state" value="1" <?php if($rowz['state']){ echo "checked";} ?> >
                                     </div>
 
                                     <input type="submit" name="upload" value="تعديل" class="btn btn-dark btn-block">

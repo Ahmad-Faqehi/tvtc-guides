@@ -1,42 +1,8 @@
 <?php
-
-//if(!isset($_GET['do'])): header("Location: home.html"); die(); endif;
-//if(isset($_GET['do'])){
-//
-//    $do = $_GET['do'];
-//
-//    switch ($do){
-//        case 'support':
-//            $job = "الدعم الفني";
-//            break;
-//
-//        case 'key':
-//            $job = "مسؤولة المفاتيح";
-//            break;
-//
-//        case 'security':
-//            $job = "الامن";
-//            break;
-//
-//        case 'doctor':
-//            $job = "الطبيبة";
-//            break;
-//
-//        default:
-//            $job = "";
-//    }
-//    if(empty($job)){
-//        header("Location: index.php"); die();
-//    }
-//
-//    $lable = " نموذج " . $job;
-//}
-
 $msg_false = false;
 $msg_true = false;
-
+include "includes/head.php";
 ?>
-<?php include "includes/head.php";?>
 
 <?php
 if(isset($_SESSION['alert:true'])){

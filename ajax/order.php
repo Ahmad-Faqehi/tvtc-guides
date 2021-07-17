@@ -261,22 +261,22 @@ if($import){
     );
 
 
-    $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = "fort92mail@gmail.com";
-    $mail->Password = "5878ASDde!d4";
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;                            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 587;                                    // TCP port to connect to
-    $mail->setFrom("fort92mail@gmail.com", 'موقع خدمات الكلية التقنية الرقمية');
-    foreach ($rowmail as $mails):
-        $mail->addAddress($mails['email']);     // Add a recipient
-        endforeach;
-    $mail->CharSet = "UTF-8";
-    $mail->isHTML(true);                                  // Set email format
-    $mail->Subject = $sub;
-    $mail->Body = $html_body;
-    $mail->send();
+    // $mail->isSMTP();
+    // $mail->Host = 'smtp.gmail.com';
+    // $mail->SMTPAuth = true;
+    // $mail->Username = "##";
+    // $mail->Password = "#";
+    // $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;                            // Enable TLS encryption, `ssl` also accepted
+    // $mail->Port = 587;                                    // TCP port to connect to
+    // $mail->setFrom("#", 'موقع خدمات الكلية التقنية الرقمية');
+    // foreach ($rowmail as $mails):
+    //     $mail->addAddress($mails['email']);     // Add a recipient
+    //     endforeach;
+    // $mail->CharSet = "UTF-8";
+    // $mail->isHTML(true);                                  // Set email format
+    // $mail->Subject = $sub;
+    // $mail->Body = $html_body;
+    // $mail->send();
     endif;
 
     $stmtz=$conn->prepare("INSERT INTO `order`(`to_who`, `message`, `important`, `from_who`, `date_order`) value (:towho,:message,:importt,:fromh,:date) ");

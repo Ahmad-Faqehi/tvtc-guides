@@ -249,7 +249,7 @@
                                 <img src="img/moji/4.jpg" alt="testimonials image" class="img-fluid">
                             </div>
                             <div class="testimonials-body">
-                                <h5 class="fonty"> لمياء المطيري</h5>
+                                <h5 class="fonty"> لمياء محمد</h5>
                                 <div class="team-social m-2">
                                     <a href="#no"><i class="fab fa-twitter"></i></a>
                                     <a href="#no"><i class="fab fa-instagram"></i></a>
@@ -264,7 +264,7 @@
                                 <img src="img/moji/3.jpg" alt="testimonials image" class="img-fluid">
                             </div>
                             <div class="testimonials-body">
-                                <h5 class="fonty"> ساره العبدان </h5>
+                                <h5 class="fonty"> ساره علي </h5>
                                 <div class="team-social m-2">
                                     <a href="#no"><i class="fab fa-twitter"></i></a>
                                     <a href="#no"><i class="fab fa-instagram"></i></a>
@@ -279,7 +279,7 @@
                                 <img src="img/moji/8.jpg" alt="testimonials image" class="img-fluid">
                             </div>
                             <div class="testimonials-body">
-                                <h5 class="fonty">لمياء الحيان</h5>
+                                <h5 class="fonty">دانيا محمد</h5>
                                 <div class="team-social m-2">
                                     <a href="#no"><i class="fab fa-twitter"></i></a>
                                     <a href="#no"><i class="fab fa-instagram"></i></a>
@@ -294,7 +294,7 @@
                                 <img src="img/moji/7.jpg" alt="testimonials image" class="img-fluid">
                             </div>
                             <div class="testimonials-body">
-                                <h5 class="fonty"> سارة غانم </h5>
+                                <h5 class="fonty"> نورة أحمد </h5>
                                 <div class="team-social m-2">
                                     <a href="#no"><i class="fab fa-twitter"></i></a>
                                     <a href="#no"><i class="fab fa-instagram"></i></a>
@@ -326,7 +326,7 @@
     </div>
     <div class="copyright">
         <div class="container">
-            <p class="copyright-text text-center fonty-par">مشروع متدربات الكلية التقنية الرقمية بالرياض - إشراف المدربة <b>أ. ايمان الغامدي</b></p>
+            <p class="copyright-text text-center fonty-par" style="direction: rtl;"> برمجة و تطوير: <a href="https://iahmad.info" class="text-white" style=" font-family: 'Roboto';"> Ahmad Faqehi</a></p>
         </div>
     </div>
 </footer>

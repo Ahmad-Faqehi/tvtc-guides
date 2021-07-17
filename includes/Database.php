@@ -7,17 +7,17 @@ class Database
 
     protected $_db;
     static $_instance;
-    private $host = 'shareddb-y.hosting.stackcp.net';
-    private $db_name = 'ttccga-31353943fc';
-    private $username = 'lamn';
-    private $password = 'zpmM>wYcy@+i';
+    private $host = 'localhost';
+    private $db_name = 'tvtc';
+    private $username = 'root';
+    private $password = '';
 
     private function __construct() {
         try{
             $this->_db = new PDO('mysql:host='.$this->host .';dbname='.$this->db_name .';charset=utf8mb4', ''.$this->username .'', ''.$this->password .'', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
         }catch(PDOException $e){
             $errorId = 6;
-            require 'error.php';
+//            require 'error.php';
             exit;
         }
     }

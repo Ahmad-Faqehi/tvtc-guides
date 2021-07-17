@@ -118,11 +118,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = "fort92mail@gmail.com";
-            $mail->Password = "5878ASDde!d4";
+            $mail->Username = "#"; // Todo: Write The Email Here 
+            $mail->Password = "#"; // Todo: Write the Password Here
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;                            // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                                    // TCP port to connect to
-            $mail->setFrom("fort92mail@gmail.com", 'موقع خدمات الكلية التقنية الرقمية');
+            $mail->setFrom("#", 'موقع خدمات الكلية التقنية الرقمية');
             $mail->addAddress($email);     // Add a recipient
             $mail->CharSet = "UTF-8";
             $mail->isHTML(true);                                  // Set email format

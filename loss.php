@@ -17,6 +17,11 @@
         /* margin: -1rem -1rem -1rem auto; */
     }
 
+    .btn-secondary {
+    color: #5a59e6;
+    background-color: #6c757d00;
+    border-color: #403f48;
+}
 </style>
 <!--// Header Start //-->
 <?php include "includes/header.php";?>
@@ -42,17 +47,6 @@
 
         <div class="row justify-content-center">
             <div class="blog-sidebar" style="width: 85%;">
-<!--                <a href="#" data-toggle="modal" data-target="#about-us"> test </a>-->
-
-<!--                <div class="blog-widgets">-->
-<!--                    <h5 class="inner-header-title">Search</h5>-->
-<!--                    <form action="old2index.html" method="post">-->
-<!--                        <div class="blog-search-bar position-relative">-->
-<!--                            <input type="text" required="" placeholder="Type Here *" class="search-form-control">-->
-<!--                            <button class="blog-search-btn"><span class="fa fa-search"></span></button>-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                </div>-->
 
                 <div class="blog-widgets text-right " >
                     <h5 class="inner-header-title text-center">قائمة المفقودات</h5>
@@ -157,13 +151,11 @@ endforeach;
     </div>
     <div class="copyright">
         <div class="container">
-            <p class="copyright-text text-center fonty-par">مشروع متدربات الكلية التقنية الرقمية بالرياض - إشراف المدربة <b>أ. ايمان الغامدي</b></p>
+            <p class="copyright-text text-center fonty-par" style="direction: rtl;"> برمجة و تطوير: <a href="https://iahmad.info" class="text-white" style=" font-family: 'Roboto';"> Ahmad Faqehi</a></p>
         </div>
     </div>
 </footer>
 <!--// Footer End //-->
-
-<!--<a href="soon.html" data-scroll-goto="1" class="scroll-top-btn"><i class="fa fa-arrow-up"></i></a>-->
 
 
 <div class="preloader-wrap">
