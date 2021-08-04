@@ -89,7 +89,7 @@ First user most login to make order.
 <!-- CONTACT -->
 ## Contact
 
-Ahmad Faqehi - [@A_F775](https://twitter.com/A_F775) - alfaqehi775@gmail.com
+Ahmad Faqehi - [@A_F775](https://twitter.com/A_F775) - alfaqehi775@hotmail.com
 
 Project Link: [https://github.com/Ahmad-Faqehi/tvtc-guides](https://github.com/Ahmad-Faqehi/tvtc-guides)
 
